@@ -1,8 +1,9 @@
+// Made by Muhammad Ahmad Chughtai
+// Roll # F2023266634
+
 #include <iostream>
 #include <string>
 #include "classes.h"
-
-using namespace std;
 
 int item_id = 0;
 
@@ -13,6 +14,11 @@ void add_item();
 void edit_item();
 void delete_item();
 void update_quantity();
+void order_management();
+void view_orders();
+void edit_order_status();
+void cancel_order();
+void view_cancelled_orders();
 
 void admin()
 {
@@ -39,7 +45,7 @@ void admin_menu2()
     while (true)
     {
         cout << "Admin Menu:" << endl;
-        cout << " 1 -> Inventory Management" << endl;
+        cout << " 1 -> Inventory Management" << endl; // completed
         cout << " 2 -> Order Management" << endl;
         cout << " 3 -> Financial Management" << endl;
         cout << " 4 -> Table Management" << endl;
@@ -57,7 +63,7 @@ void admin_menu2()
             inventory_management();
             break;
         case 2:
-            // Order Management code here
+            order_management();
             break;
         case 3:
             // Financial Management code here
@@ -268,4 +274,121 @@ void update_quantity()
     cin >> quantity;
     items[id].quantity = quantity;
     cout << "Quantity Updated Successfully!" << endl;
+}
+
+void order_management()
+{
+    cout << "Order Management Menu:" << endl;
+    cout << " 1 -> View Orders" << endl;
+    cout << " 2 -> Edit Order Status" << endl;
+    cout << " 3 -> Cancel Order" << endl;
+    cout << " 4 -> View Cancelled Order" << endl;
+    cout << " 0 -> Exit" << endl;
+
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        view_orders();
+        break;
+    case 2:
+        edit_order_status();
+        break;
+    case 3:
+        cancel_order();
+        break;
+
+    case 4:
+        view_cancelled_orders();
+        break;
+
+    case 0:
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
+}
+
+void view_orders()
+{
+    cout << "Orders List:" << endl;
+    for (int i = 0; i < 100; i++)
+    {
+        if (orders[i].order_status == "Nill" || orders[i].order_status == "Cancelled")
+        {
+            continue;
+        }
+        cout << "Order ID: " << i << endl;
+        cout << "Customer Name: " << orders[i].customer_name << endl;
+        cout << "Total Amount: " << orders[i].total << endl;
+        cout << "Order Status: " << orders[i].order_status << endl;
+        cout << "Order Type: " << orders[i].order_type << endl;
+        cout << endl;
+    }
+}
+
+void edit_order_status()
+{
+    cout << "You are editing the status of an Order" << endl;
+    cout << "Enter Order ID to edit status: ";
+    int id;
+    cin >> id;
+
+    if (orders[id].order_status == "Nill" || orders[id].order_status == "Cancelled")
+    {
+        cout << "Order not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Order Details:" << endl;
+    cout << "Customer Name: " << orders[id].customer_name << endl;
+    cout << "Total Amount: " << orders[id].total << endl;
+    cout << "Order Status: " << orders[id].order_status << endl;
+    cout << "Order Type: " << orders[id].order_type << endl;
+
+    cout << "Enter new status for this order:" << endl;
+    string status;
+    cin.ignore();
+    getline(cin, status);
+    orders[id].order_status = status;
+    cout << "Order Status Updated Successfully!" << endl;
+}
+
+void cancel_order()
+{
+    cout << "You are cancelling an Order" << endl;
+    cout << "Enter Order ID to cancel: ";
+    int id;
+    cin >> id;
+
+    if (orders[id].order_status == "Nill" || orders[id].order_status == "Cancelled")
+    {
+        cout << "Order not found. Please try again." << endl;
+        return;
+    }
+
+    orders[id].order_status = "Cancelled";
+    cout << "Order Cancelled Successfully!" << endl;
+}
+
+void view_cancelled_orders()
+{
+    cout << "Cancelled Orders List:" << endl;
+    for (int i = 0; i < 100; i++)
+    {
+        if (orders[i].order_status != "Cancelled")
+        {
+            continue;
+        }
+        cout << "Order ID: " << i << endl;
+        cout << "Customer Name: " << orders[i].customer_name << endl;
+        cout << "Total Amount: " << orders[i].total << endl;
+        cout << "Order Status: " << orders[i].order_status << endl;
+        cout << "Order Type: " << orders[i].order_type << endl;
+        cout << endl;
+    }
 }

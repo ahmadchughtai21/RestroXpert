@@ -21,4 +21,48 @@ public:
     }
 };
 
+class Order
+{
+public:
+    int id;
+    double total;
+    string customer_name;
+    string order_status;
+    string order_type;
+
+    Order()
+    {
+        total = 0.0;
+        customer_name = "Guest";
+        order_status = "Nill";
+        order_type = "Unknown";
+
+    }
+};
+
+class User
+{
+public:
+    string name;
+};
+
+class Customer : public User
+{
+public:
+    string phone;
+    string email;
+    int order_count;
+
+    Customer()
+    {
+        name = "Unknown";
+        phone = "Unknown";
+        email = "Unknown";
+        order_count = 0;
+    }
+};
+
+
+
 Item items[100];
+Order orders[100];
