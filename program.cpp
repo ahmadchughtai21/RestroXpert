@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include "admin.cpp"
 
 using namespace std;
 
@@ -20,7 +22,7 @@ int main()
         switch (choice)
         {
         case 1:
-            // Admin Panel code here
+            admin();
             break;
         case 2:
             // Customer Panel code here
