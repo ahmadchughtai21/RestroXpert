@@ -331,7 +331,9 @@ void view_orders()
         }
         cout << "Order ID: " << i << endl;
         cout << "Customer Name: " << orders[i].customer_name << endl;
-        cout << "Total Amount: " << orders[i].total << endl;
+        cout << "Total Sale Price: " << orders[i].total_sale_price << endl;
+        cout << "Total Cost Price: " << orders[i].total_cost_price << endl;
+        cout << "Total Profit: " << orders[i].total_sale_price - orders[i].total_cost_price << endl;
         cout << "Order Status: " << orders[i].order_status << endl;
         cout << "Order Type: " << orders[i].order_type << endl;
         cout << endl;
@@ -353,7 +355,9 @@ void edit_order_status()
 
     cout << "Order Details:" << endl;
     cout << "Customer Name: " << orders[id].customer_name << endl;
-    cout << "Total Amount: " << orders[id].total << endl;
+    cout << "Total Sale Price: " << orders[id].total_sale_price << endl;
+    cout << "Total Cost Price: " << orders[id].total_cost_price << endl;
+    cout << "Total Profit: " << orders[id].total_sale_price - orders[id].total_cost_price << endl;
     cout << "Order Status: " << orders[id].order_status << endl;
     cout << "Order Type: " << orders[id].order_type << endl;
 
@@ -393,7 +397,9 @@ void view_cancelled_orders()
         }
         cout << "Order ID: " << i << endl;
         cout << "Customer Name: " << orders[i].customer_name << endl;
-        cout << "Total Amount: " << orders[i].total << endl;
+        cout << "Total Sale Price: " << orders[i].total_sale_price << endl;
+        cout << "Total Cost Price: " << orders[i].total_cost_price << endl;
+        cout << "Total Profit: " << orders[i].total_sale_price - orders[i].total_cost_price << endl;
         cout << "Order Status: " << orders[i].order_status << endl;
         cout << "Order Type: " << orders[i].order_type << endl;
         cout << endl;
@@ -431,7 +437,6 @@ void generate_financial_report()
 {
     double total_sales = 0.0;
     double total_profit = 0.0;
-    double total_expenses = 0.0;
 
     for (int i = 0; i < 100; i++)
     {
@@ -439,16 +444,15 @@ void generate_financial_report()
         {
             continue;
         }
-        total_sales = total_sales + orders[i].total;
+        total_sales = total_sales + orders[i].total_sale_price;
     }
-
     for (int i = 0; i < 100; i++)
     {
-        if (items[i].name == "Unknown")
+        if (orders[i].order_status == "Nill" || orders[i].order_status == "Cancelled")
         {
             continue;
         }
-        total_profit += (items[i].price - items[i].o_price) * items[i].quantity;
+        total_profit = total_profit + (orders[i].total_sale_price - orders[i].total_cost_price);
     }
 
     SYSTEMTIME t;
@@ -456,8 +460,6 @@ void generate_financial_report()
     cout << "Financial Report as of " << t.wDay << "/" << t.wMonth << "/" << t.wYear << endl;
     cout << "Total Sales: " << total_sales << endl;
     cout << "Total Profit: " << total_profit << endl;
-    cout << "Total Expenses: " << total_expenses << endl;
-    cout << "Net Profit: " << total_sales - total_expenses << endl;
 }
 
 void stock_report()
@@ -465,18 +467,18 @@ void stock_report()
     cout << "Stock Report:" << endl;
     for (int i = 0; i < 100; i++)
     {
-            if (items[i].name == "Unknown")
-            {
-                continue;
-            }
-
-            if (items[i].quantity < 5)
-            {
-                cout << "Item: " << items[i].name << " - Stock is low. Please restock." << endl;
-            }
-            else if (items[i].quantity <= 10)
-            {
-                cout << "Item: " << items[i].name << " - Stock is running low. Consider restocking." << endl;
-            }
-            cout << "Stock Report Generated Successfully! (If empty, all items are in stock or there are no items in inventory)";
+        if (items[i].name == "Unknown")
+        {
+            continue;
         }
+
+        if (items[i].quantity < 5)
+        {
+            cout << "Item: " << items[i].name << " - Stock is low. Please restock." << endl;
+        }
+        else if (items[i].quantity <= 10)
+        {
+            cout << "Item: " << items[i].name << " - Stock is running low. Consider restocking." << endl;
+        }
+        cout << "Stock Report Generated Successfully! (If empty, all items are in stock or there are no items in inventory)";
+    }
