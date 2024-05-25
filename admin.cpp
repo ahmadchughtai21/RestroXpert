@@ -12,6 +12,7 @@ void view_inventory();
 void add_item();
 void edit_item();
 void delete_item();
+void update_quantity();
 
 void admin()
 {
@@ -114,7 +115,7 @@ void inventory_management()
 
             break;
         case 5:
-            // Update Quantity code here
+            update_quantity();
             break;
         case 0:
             return;
@@ -241,4 +242,30 @@ void delete_item()
     items[id].quantity = 0;
 
     cout << "Item Deleted Successfully!" << endl;
+}
+
+void update_quantity()
+{
+    cout << "You are updating the quantity of an Item" << endl;
+    cout << "Enter Item ID to update quantity: ";
+    int id;
+    cin >> id;
+
+    if (items[id].name == "Unknown")
+    {
+        cout << "Item not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Item Details:" << endl;
+    cout << "Name: " << items[id].name << endl;
+    cout << "Original Price: " << items[id].o_price << endl;
+    cout << "Selling Price: " << items[id].price << endl;
+    cout << "Quantity: " << items[id].quantity << endl;
+
+    cout << "Enter new quantity for this item:" << endl;
+    int quantity;
+    cin >> quantity;
+    items[id].quantity = quantity;
+    cout << "Quantity Updated Successfully!" << endl;
 }
