@@ -8,16 +8,17 @@ class Item
 public:
     string name;
     string category;
-    double price;
+    double o_price; // Original Price
+    double price;   // Selling Price
     int quantity;
 
-    // Item()
-    // {
-    //     name = "Unknown";
-    //     category = "Uncategorized";
-    //     price = 0.0;
-    //     quantity = 0;
-    // }
+    Item()
+    {
+        name = "Unknown";
+        o_price = 0.0;
+        price = 0.0;
+        quantity = 0;
+    }
 };
 
 Item items[100];

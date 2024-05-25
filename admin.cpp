@@ -4,6 +4,8 @@
 
 using namespace std;
 
+int item_id = 0;
+
 void admin_menu2();
 void inventory_management();
 void view_inventory();
@@ -12,11 +14,12 @@ void add_item();
 void admin()
 {
 admin_menu:
+    string password = "admin";
     cout << "Enter Password! :";
-    string password;
-    cin >> password;
+    string user_password;
+    cin >> user_password;
 
-    if (password == "admin")
+    if (user_password == password)
     {
         cout << "Welcome Admin!" << endl;
         admin_menu2();
@@ -124,7 +127,7 @@ void view_inventory()
 {
 
     cout << "Inventory List:" << endl;
-    for (int i = -1; i < 100; i++)
+    for (int i = 0; i < 100; i++)
     {
         if (items[i].name != "Unknown")
         {
@@ -141,19 +144,19 @@ void view_inventory()
 void add_item()
 {
     cout << "You are adding an Item" << endl;
-    int item_id = -1;
     item_id++;
 
     cout << "Enter Item Name: ";
+    cin.ignore();
     string name;
-    cin >> name;
+    getline(cin, name);
 
     items[item_id].name = name;
-    cout << "Enter Item Category: ";
-    string category;
-    cin >> category;
-    items[item_id].category = category;
-    cout << "Enter Item Price: ";
+    cout << "Enter Item Original Price: ";
+    double o_price;
+    cin >> o_price;
+    items[item_id].o_price = o_price;
+    cout << "Enter Item Selling Price: ";
     double price;
     cin >> price;
     items[item_id].price = price;
