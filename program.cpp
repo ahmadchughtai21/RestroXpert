@@ -3,8 +3,6 @@
 #include <windows.h>
 #include "admin.cpp"
 
-// using namespace std;
-
 void admin();
 
 int main()
