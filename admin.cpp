@@ -10,6 +10,7 @@ void admin_menu2();
 void inventory_management();
 void view_inventory();
 void add_item();
+void edit_item();
 
 void admin()
 {
@@ -104,7 +105,7 @@ void inventory_management()
 
             break;
         case 3:
-            // Edit Item code here
+            edit_item();
 
             break;
         case 4:
@@ -171,4 +172,50 @@ add_item:
     int quantity;
     cin >> quantity;
     items[item_id].quantity = quantity;
+}
+
+void edit_item()
+{
+    cout << "You are editing an Item" << endl;
+    cout << "Enter Item ID to edit: ";
+    int id;
+    cin >> id;
+
+    if (items[id].name == "Unknown")
+    {
+        cout << "Item not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Item Details:" << endl;
+    cout << "Name: " << items[id].name << endl;
+    cout << "Original Price: " << items[id].o_price << endl;
+    cout << "Selling Price: " << items[id].price << endl;
+    cout << "Quantity: " << items[id].quantity << endl;
+
+    cout << "Enter new details for this item:" << endl;
+
+    cout << "Enter Item Name: ";
+    cin.ignore();
+    string name;
+    getline(cin, name);
+    items[id].name = name;
+    cout << "Enter Item Original Price: ";
+    double o_price;
+    cin >> o_price;
+    items[id].o_price = o_price;
+    cout << "Enter Item Selling Price: ";
+    double price;
+    cin >> price;
+    if (price < o_price)
+    {
+        cout << "Selling price cannot be less than original price. Please try again." << endl;
+        return;
+    }
+    items[id].price = price;
+    cout << "Enter Item Quantity: ";
+    int quantity;
+    cin >> quantity;
+    items[id].quantity = quantity;
+    cout << "Item Updated Successfully!" << endl;
 }
