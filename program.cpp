@@ -14,11 +14,11 @@ main_menu:
     while (true)
     {
         cout << "RestroXpert - Main Menu" << endl;
-        cout << "1. Admin Panel" << endl;
-        cout << "2. Customer Panel" << endl;
-        cout << "3. Staff Attendance" << endl;
-        cout << "4. Feedback Panel" << endl;
-        cout << "0. Exit" << endl;
+        cout << " 1 -> Admin Panel" << endl;
+        cout << " 2 -> Customer Panel" << endl;
+        cout << " 3 -> Staff Attendance" << endl;
+        cout << " 4 -> Feedback Panel" << endl;
+        cout << " 0 -> Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
