@@ -19,6 +19,9 @@ void view_orders();
 void edit_order_status();
 void cancel_order();
 void view_cancelled_orders();
+void reports();
+void generate_financial_report();
+void stock_report();
 
 void admin()
 {
@@ -47,10 +50,11 @@ void admin_menu2()
         cout << "Admin Menu:" << endl;
         cout << " 1 -> Inventory Management" << endl; // completed
         cout << " 2 -> Order Management" << endl;
-        cout << " 3 -> Financial Management" << endl;
+        cout << " 3 -> Get Reports" << endl;
         cout << " 4 -> Table Management" << endl;
         cout << " 5 -> User Management" << endl;
         cout << " 6 -> Discount Management" << endl;
+        cout << " 7 -> View Feedbacks" << endl;
         cout << " 0 -> Exit" << endl;
 
         int choice;
@@ -66,7 +70,7 @@ void admin_menu2()
             order_management();
             break;
         case 3:
-            // Financial Management code here
+            reports();
             break;
         case 4:
             // Table Management code here
@@ -76,6 +80,9 @@ void admin_menu2()
             break;
         case 6:
             // Discount Management code here
+            break;
+        case 7:
+            // View Feedbacks code here
             break;
         case 0:
             return;
@@ -392,3 +399,84 @@ void view_cancelled_orders()
         cout << endl;
     }
 }
+
+void reports()
+{
+    cout << "Get Reports Menu:" << endl;
+    cout << " 1 -> Generate Financial Report" << endl;
+    cout << " 2 -> Stock Report" << endl;
+    cout << " 0 -> Exit" << endl;
+
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        generate_financial_report();
+        break;
+    case 2:
+        stock_report();
+        break;
+    case 0:
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
+}
+
+void generate_financial_report()
+{
+    double total_sales = 0.0;
+    double total_profit = 0.0;
+    double total_expenses = 0.0;
+
+    for (int i = 0; i < 100; i++)
+    {
+        if (orders[i].order_status == "Nill" || orders[i].order_status == "Cancelled")
+        {
+            continue;
+        }
+        total_sales = total_sales + orders[i].total;
+    }
+
+    for (int i = 0; i < 100; i++)
+    {
+        if (items[i].name == "Unknown")
+        {
+            continue;
+        }
+        total_profit += (items[i].price - items[i].o_price) * items[i].quantity;
+    }
+
+    SYSTEMTIME t;
+    GetLocalTime(&t);
+    cout << "Financial Report as of " << t.wDay << "/" << t.wMonth << "/" << t.wYear << endl;
+    cout << "Total Sales: " << total_sales << endl;
+    cout << "Total Profit: " << total_profit << endl;
+    cout << "Total Expenses: " << total_expenses << endl;
+    cout << "Net Profit: " << total_sales - total_expenses << endl;
+}
+
+void stock_report()
+{
+    cout << "Stock Report:" << endl;
+    for (int i = 0; i < 100; i++)
+    {
+            if (items[i].name == "Unknown")
+            {
+                continue;
+            }
+
+            if (items[i].quantity < 5)
+            {
+                cout << "Item: " << items[i].name << " - Stock is low. Please restock." << endl;
+            }
+            else if (items[i].quantity <= 10)
+            {
+                cout << "Item: " << items[i].name << " - Stock is running low. Consider restocking." << endl;
+            }
+            cout << "Stock Report Generated Successfully! (If empty, all items are in stock or there are no items in inventory)";
+        }
