@@ -4,8 +4,11 @@
 
 using namespace std;
 
+void admin();
+
 int main()
 {
+main_menu:
     int choice;
 
     while (true)
