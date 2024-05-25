@@ -5,6 +5,8 @@
 #include <string>
 #include "classes.h"
 
+using namespace std;
+
 int item_id = 0;
 int table_id = 0;
 
