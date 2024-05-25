@@ -6,6 +6,7 @@
 #include "classes.h"
 
 int item_id = 0;
+int table_id = 0;
 
 void admin_menu2();
 void inventory_management();
@@ -22,6 +23,11 @@ void view_cancelled_orders();
 void reports();
 void generate_financial_report();
 void stock_report();
+void table_management();
+void view_tables();
+void add_table();
+void edit_table();
+void delete_table();
 
 void admin()
 {
@@ -73,7 +79,7 @@ void admin_menu2()
             reports();
             break;
         case 4:
-            // Table Management code here
+            table_management();
             break;
         case 5:
             // User Management code here
@@ -481,4 +487,114 @@ void stock_report()
             cout << "Item: " << items[i].name << " - Stock is running low. Consider restocking." << endl;
         }
         cout << "Stock Report Generated Successfully! (If empty, all items are in stock or there are no items in inventory)";
+    }
+
+    void table_management()
+    {
+        cout << "Table Management Menu:" << endl;
+        cout << " 1 -> View Tables" << endl;
+        cout << " 2 -> Add Table" << endl;
+        cout << " 3 -> Edit Table" << endl;
+        cout << " 4 -> Delete Table" << endl;
+        cout << " 0 -> Exit" << endl;
+
+        int choice;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            view_tables();
+            break;
+        case 2:
+            add_table();
+            break;
+        case 3:
+            edit_table();
+            break;
+        case 4:
+            delete_table();
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Invalid choice! Please try again." << endl;
+            break;
+        }
+    }
+
+    void view_tables()
+    {
+        cout << "Tables List:" << endl;
+        for (int i = 0; i < 100; i++)
+        {
+            if (tables[i].status == "Unknown")
+            {
+                continue;
+            }
+            cout << "Table No: " << i << endl;
+            cout << "Table Capacity: " << tables[i].capacity << endl;
+            cout << "Table Status: " << tables[i].status << endl;
+            cout << endl;
+        }
+    }
+
+    void add_table()
+    {
+        cout << "You are adding a Table" << endl;
+        table_id++;
+    add_table:
+
+        cout << "Enter Table Capacity: ";
+        int capacity;
+        cin >> capacity;
+        tables[table_id].capacity = capacity;
+        tables[table_id].status = "Available";
+    }
+
+    void edit_table()
+    {
+        cout << "You are editing a Table" << endl;
+        cout << "Enter Table No to edit: ";
+        int id;
+        cin >> id;
+
+        if (tables[id].status == "Unknown")
+        {
+            cout << "Table not found. Please try again." << endl;
+            return;
+        }
+
+        cout << "Table Details:" << endl;
+        cout << "Table Capacity: " << tables[id].capacity << endl;
+        cout << "Table Status: " << tables[id].status << endl;
+
+        cout << "Enter new details for this table:" << endl;
+
+        cout << "Enter Table Capacity: ";
+        int capacity;
+        cin >> capacity;
+        tables[id].capacity = capacity;
+        tables[id].status = "Available";
+        cout << "Table Updated Successfully!" << endl;
+    }
+
+    void delete_table()
+    {
+        cout << "You are deleting a Table" << endl;
+        cout << "Enter Table No to delete: ";
+        int id;
+        cin >> id;
+
+        if (tables[id].status == "Unknown")
+        {
+            cout << "Table not found. Please try again." << endl;
+            return;
+        }
+
+        tables[id].capacity = 0;
+        tables[id].status = "Unknown";
+
+        cout << "Table Deleted Successfully!" << endl;
     }

@@ -64,6 +64,22 @@ public:
     }
 };
 
+class Table
+{
+public:
+    int capacity;
+    string status;
+    string reserved_by;
+
+    Table()
+    {
+        capacity = 0;
+        status = "Unknown";
+        reserved_by = "Unknown";
+    }
+};
+
 Item items[100];
 Order orders[100];
 Customer customers[100];
+Table tables[100];
