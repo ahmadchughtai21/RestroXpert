@@ -11,6 +11,7 @@ void inventory_management();
 void view_inventory();
 void add_item();
 void edit_item();
+void delete_item();
 
 void admin()
 {
@@ -109,7 +110,7 @@ void inventory_management()
 
             break;
         case 4:
-            // Delete Item code here
+            delete_item();
 
             break;
         case 5:
@@ -130,16 +131,17 @@ void view_inventory()
     cout << "Inventory List:" << endl;
     for (int i = 0; i < 100; i++)
     {
-        if (items[i].name != "Unknown")
+        if (items[i].name == "Unknown")
         {
-            cout << "Item ID: " << i << endl;
-            cout << "Name: " << items[i].name << endl;
-            cout << "Original Price: " << items[i].o_price << endl;
-            cout << "Selling Price: " << items[i].price << endl;
-            cout << "Profit per Sale: " << items[i].price - items[i].o_price << endl; // "Profit: Selling Price - Original Price
-            cout << "Quantity: " << items[i].quantity << endl;
-            cout << endl;
+            continue;
         }
+        cout << "Item ID: " << i << endl;
+        cout << "Name: " << items[i].name << endl;
+        cout << "Original Price: " << items[i].o_price << endl;
+        cout << "Selling Price: " << items[i].price << endl;
+        cout << "Profit per Sale: " << items[i].price - items[i].o_price << endl; // "Profit: Selling Price - Original Price
+        cout << "Quantity: " << items[i].quantity << endl;
+        cout << endl;
     }
 }
 
@@ -218,4 +220,25 @@ void edit_item()
     cin >> quantity;
     items[id].quantity = quantity;
     cout << "Item Updated Successfully!" << endl;
+}
+
+void delete_item()
+{
+    cout << "You are deleting an Item" << endl;
+    cout << "Enter Item ID to delete: ";
+    int id;
+    cin >> id;
+
+    if (items[id].name == "Unknown")
+    {
+        cout << "Item not found. Please try again." << endl;
+        return;
+    }
+
+    items[id].name = "Unknown";
+    items[id].o_price = 0.0;
+    items[id].price = 0.0;
+    items[id].quantity = 0;
+
+    cout << "Item Deleted Successfully!" << endl;
 }
