@@ -5,8 +5,6 @@
 #ifndef CLASSES_H
 #define CLASSES_H
 
-// Your class definitions go here
-
 using namespace std;
 
 class Item
