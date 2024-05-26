@@ -3,13 +3,16 @@
 
 #include <iostream>
 #include <string>
+#include <windows.h>
+#include <fstream>
 #include "classes.h"
 
 // Global Variables for Counter
-int item_id = 0;
-int table_id = 0;
-int user_id = 0;
-int discount_id = 0;
+int changes;
+int item_id;
+int table_id;
+int user_id;
+int discount_id;
 
 // Prototypes of used functions
 void admin_menu2();
@@ -48,28 +51,25 @@ void view_feedbacks();
 
 void admin()
 {
-admin_menu:
-    string password = "admin"; // Set password here
-    cout << "Enter Password! :";
-    string user_password;
-    cin >> user_password;
+admin:
+    cout << "Enter Admin Password: ";
+    string password;
+    cin >> password;
 
-    if (user_password == password)
+    if (password != "admin")
     {
-        cout << "Welcome Admin!" << endl;
-        admin_menu2();
+        cout << "Incorrect Password! Please try again." << endl;
+        goto admin;
     }
-    else
-    {
-        cout << "Incorrect Password!" << endl;
-        goto admin_menu;
-    }
+    cout << "Welcome Admin!" << endl;
+    admin_menu2();
 }
 
 void admin_menu2()
 {
     while (true)
     {
+    admin_menu2:
         cout << "Admin Menu:" << endl;
         cout << " 1 -> Inventory Management" << endl; // completed
         cout << " 2 -> Order Management" << endl;     // completed
@@ -111,7 +111,7 @@ void admin_menu2()
             return;
         default:
             cout << "Invalid choice! Please try again." << endl;
-            break;
+            goto admin_menu2;
         }
     }
 }
@@ -1082,4 +1082,48 @@ void view_feedbacks()
         cout << "Invalid choice! Please try again." << endl;
         break;
     }
+}
+
+void load_changes()
+{
+    ifstream fin;
+    fin.open("admin.txt");
+    fin >> item_id;
+    fin >> table_id;
+    fin >> user_id;
+    fin >> discount_id;
+    fin.close();
+}
+
+void save_changes()
+{
+    ofstream fout;
+    fout.open("admin.txt");
+    fout << item_id;
+    fout << endl;
+    fout << table_id;
+    fout << endl;
+    fout << user_id;
+    fout << endl;
+    fout << discount_id;
+    fout << endl;
+    fout.close();
+}
+
+void changes_view()
+{
+    cout << "Item ID: " << item_id << endl;
+    cout << "Table ID: " << table_id << endl;
+    cout << "User ID: " << user_id << endl;
+    cout << "Discount ID: " << discount_id << endl;
+}
+
+void reset_to_default()
+{
+    item_id = 0;
+    table_id = 0;
+    user_id = 0;
+    discount_id = 0;
+
+    save_changes();
 }

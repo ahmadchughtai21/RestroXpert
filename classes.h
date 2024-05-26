@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <windows.h>
-#ifndef CLASSES_H 
-#define CLASSES_H 
+#ifndef CLASSES_H
+#define CLASSES_H
 
 // Your class definitions go here
 
@@ -173,5 +174,7 @@ Customer customers[100];
 Table tables[100];
 Discounts discounts[100];
 Feedback feedbacks[100];
+
+
 
 #endif

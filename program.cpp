@@ -1,17 +1,23 @@
 #include <iostream>
 #include <string>
-#include <windows.h>
 #include "admin.cpp"
 #include "order.cpp"
 #include "attendance.cpp"
 #include "feedback.cpp"
+
 // #include "classes.h"
 
 void admin();
+void load_changes();
+void save_changes();
+void changes_view();
+void reset_to_default();
 
 int main()
 {
-main_menu:
+    // changes_view(); // mantainance mode
+    load_changes();
+
     int choice;
 
     while (true)
@@ -25,13 +31,15 @@ main_menu:
         cout << "  88   88 8888888   88888     8888    88   88   888    88    88 8888     8888888   88   88   8888  " << endl;
 
         cout << endl;
+    main_menu:
         cout << " ************************************************************************************************* " << endl;
         cout << " ************************************ RestroXpert - Main Menu ************************************ " << endl;
         cout << " 1 -> Admin Panel" << endl;
         cout << " 2 -> Order Food" << endl; // take order and end me ask if home delivery or dine in or us hisaab se seats and table book krne hn
         cout << " 3 -> Staff Attendance" << endl;
         cout << " 4 -> Feedback Panel" << endl;
-        cout << " 0 -> Exit" << endl;
+        cout << " 5 -> Reset to Default" << endl;
+        cout << " 0 -> Save and Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -49,8 +57,17 @@ main_menu:
         case 4:
             // Feedback Panel code here
             break;
+        case 5:
+            reset_to_default();
+            break;
+
         case 0:
+            cout << "Saving changes and exiting RestroXpert..." << endl;
+            save_changes();
             cout << "Exiting RestroXpert. Goodbye!" << endl;
+
+            // changes_view(); // mantainance mode
+
             return 0;
         default:
             cout << "Invalid choice. Please try again." << endl;
