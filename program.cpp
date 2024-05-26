@@ -2,6 +2,10 @@
 #include <string>
 #include <windows.h>
 #include "admin.cpp"
+#include "order.cpp"
+#include "attendance.cpp"
+#include "feedback.cpp"
+// #include "classes.h"
 
 void admin();
 

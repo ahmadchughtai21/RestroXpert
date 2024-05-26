@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 #include <windows.h>
+#ifndef CLASSES_H // Check if CLASSES_H is not defined
+#define CLASSES_H // Define CLASSES_H
+
+// Your class definitions go here
 
 using namespace std;
 
@@ -169,3 +173,5 @@ Customer customers[100];
 Table tables[100];
 Discounts discounts[100];
 Feedback feedbacks[100];
+
+#endif // CLASSES_H   // End of the include guard
