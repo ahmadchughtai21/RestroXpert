@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
 
 using namespace std;
 
@@ -46,6 +47,13 @@ class User
 {
 public:
     string name;
+    string role;
+
+    User()
+    {
+        name = "Unknown";
+        role = "Unknown";
+    }
 };
 
 class Customer : public User
@@ -64,6 +72,28 @@ public:
     }
 };
 
+class Staff : public User
+{
+public:
+    string cnic;
+    string phone;
+    string email;
+    string address;
+    string role;
+    string status;
+
+    Staff()
+    {
+        name = "Unknown";
+        cnic = "Unknown";
+        phone = "Unknown";
+        email = "Unknown";
+        address = "Unknown";
+        role = "Unknown";
+        status = "Unknown";
+    }
+};
+
 class Table
 {
 public:
@@ -79,7 +109,59 @@ public:
     }
 };
 
+class Address
+{
+public:
+    string house_no;
+    string street;
+    string city;
+    string country;
+
+    Address()
+    {
+        house_no = "Unknown";
+        street = "Unknown";
+        city = "Unknown";
+        country = "Unknown";
+    }
+};
+
+class Discounts
+{
+public:
+    string name;
+    double discount;
+
+    Discounts()
+    {
+        name = "Unknown";
+        discount = 0.0;
+    }
+};
+
+class Feedback
+{
+public:
+    int stars;
+    string comments;
+    string customer_name;
+    string date;
+    string status;
+    Feedback()
+    {
+        stars = 0;
+        comments = "Unknown";
+        customer_name = "Unknown";
+        date = "Unknown";
+        status = "Unknown";
+    }
+};
+
 Item items[100];
 Order orders[100];
+User users[100];
+Staff staffs[100];
 Customer customers[100];
 Table tables[100];
+Discounts discounts[100];
+Feedback feedbacks[100];

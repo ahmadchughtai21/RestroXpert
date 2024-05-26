@@ -5,9 +5,13 @@
 #include <string>
 #include "classes.h"
 
+// Global Variables for Counter
 int item_id = 0;
 int table_id = 0;
+int user_id = 0;
+int discount_id = 0;
 
+// Prototype of used functions
 void admin_menu2();
 void inventory_management();
 void view_inventory();
@@ -28,6 +32,18 @@ void view_tables();
 void add_table();
 void edit_table();
 void delete_table();
+void user_management();
+void view_all_staff();
+void get_staff_details();
+void add_staff();
+void edit_staff();
+void delete_staff();
+void discount_management();
+void view_feedbacks();
+void add_discount();
+void edit_discount();
+void delete_discount();
+void view_feedbacks();
 
 void admin()
 {
@@ -82,13 +98,13 @@ void admin_menu2()
             table_management();
             break;
         case 5:
-            // User Management code here
+            user_management();
             break;
         case 6:
-            // Discount Management code here
+            discount_management();
             break;
         case 7:
-            // View Feedbacks code here
+            view_feedbacks();
             break;
         case 0:
             return;
@@ -598,4 +614,446 @@ void delete_table()
     tables[id].status = "Unknown";
 
     cout << "Table Deleted Successfully!" << endl;
+}
+
+void user_management()
+{
+    cout << "User Management Menu:" << endl;
+    cout << " 1 -> View All Staff" << endl;
+    cout << " 2 -> Add Staff" << endl;
+    cout << " 3 -> Edit Staff Info" << endl;
+    cout << " 4 -> Delete Staff Member" << endl;
+    cout << " 0 -> Back" << endl;
+
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        view_all_staff();
+        break;
+    case 2:
+        add_staff();
+        break;
+    case 3:
+        edit_staff();
+        break;
+    case 4:
+        delete_staff();
+        break;
+    case 0:
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
+}
+
+void view_all_staff()
+{
+    cout << "Staff List:" << endl;
+    for (int i = 0; i < 100; i++)
+    {
+        if (staffs[i].name == "Unknown")
+        {
+            continue;
+        }
+        cout << "Staff ID: " << i << endl;
+        cout << "Name: " << staffs[i].name << endl;
+        cout << "Role: " << staffs[i].role << endl;
+        cout << endl;
+    }
+
+    cout << " 1 -> Get details of a staff member" << endl;
+    cout << " 0 -> Back" << endl;
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        get_staff_details();
+        break;
+    case 0:
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
+}
+
+void get_staff_details()
+{
+    cout << "Enter Staff ID to get details: ";
+    int id;
+    cin >> id;
+
+    if (staffs[id].name == "Unknown")
+    {
+        cout << "Staff not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Staff Details:" << endl;
+    cout << "Name: " << staffs[id].name << endl;
+    cout << "CNIC: " << staffs[id].cnic << endl;
+    cout << "Phone: " << staffs[id].phone << endl;
+    cout << "Email: " << staffs[id].email << endl;
+    cout << "Address: " << staffs[id].address << endl;
+    cout << "Role: " << staffs[id].role << endl;
+    cout << "Status: " << staffs[id].status << endl;
+}
+
+void add_staff()
+{
+    cout << "You are adding a Staff Member" << endl;
+    user_id++;
+add_staff:
+
+    cout << "Enter Staff Name: ";
+    cin.ignore();
+    string name;
+    getline(cin, name);
+    staffs[user_id].name = name;
+    cout << "Enter Staff CNIC: ";
+    string cnic;
+    cin >> cnic;
+    staffs[user_id].cnic = cnic;
+    cout << "Enter Staff Phone: ";
+    string phone;
+    cin >> phone;
+    staffs[user_id].phone = phone;
+    cout << "Enter Staff Email: ";
+    string email;
+    cin >> email;
+    staffs[user_id].email = email;
+    cout << "Enter Staff Address: ";
+    string address;
+    cin.ignore();
+    getline(cin, address);
+    staffs[user_id].address = address;
+    cout << "Enter Staff Role: ";
+    string role;
+    cin >> role;
+    staffs[user_id].role = role;
+    cout << "Enter Staff Status: ";
+    string status;
+    cin >> status;
+    staffs[user_id].status = status;
+
+    cout << "Staff Member Added Successfully!" << endl;
+    cout << "New Details:" << endl;
+    cout << "Name: " << staffs[user_id].name << endl;
+    cout << "CNIC: " << staffs[user_id].cnic << endl;
+    cout << "Phone: " << staffs[user_id].phone << endl;
+    cout << "Email: " << staffs[user_id].email << endl;
+    cout << "Address: " << staffs[user_id].address << endl;
+    cout << "Role: " << staffs[user_id].role << endl;
+    cout << "Status: " << staffs[user_id].status << endl;
+}
+
+void edit_staff()
+{
+    cout << "You are editing a Staff Member" << endl;
+    cout << "Enter Staff ID to edit: ";
+    int id;
+    cin >> id;
+
+    if (staffs[id].name == "Unknown")
+    {
+        cout << "Staff not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Staff Details:" << endl;
+    cout << "Name: " << staffs[id].name << endl;
+    cout << "CNIC: " << staffs[id].cnic << endl;
+    cout << "Phone: " << staffs[id].phone << endl;
+    cout << "Email: " << staffs[id].email << endl;
+    cout << "Address: " << staffs[id].address << endl;
+    cout << "Role: " << staffs[id].role << endl;
+    cout << "Status: " << staffs[id].status << endl;
+
+    cout << "Enter new details for this staff member:" << endl;
+
+    cout << "Enter Staff Name: ";
+    cin.ignore();
+    string name;
+    getline(cin, name);
+    staffs[id].name = name;
+    cout << "Enter Staff CNIC: ";
+    string cnic;
+    cin >> cnic;
+    staffs[id].cnic = cnic;
+    cout << "Enter Staff Phone: ";
+    string phone;
+    cin >> phone;
+    staffs[id].phone = phone;
+    cout << "Enter Staff Email: ";
+    string email;
+    cin >> email;
+    staffs[id].email = email;
+    cout << "Enter Staff Address: ";
+    string address;
+    cin.ignore();
+    getline(cin, address);
+    staffs[id].address = address;
+    cout << "Enter Staff Role: ";
+    string role;
+    cin >> role;
+    staffs[id].role = role;
+    cout << "Enter Staff Status: ";
+    string status;
+    cin >> status;
+    staffs[id].status = status;
+
+    cout << "Staff Member Updated Successfully!" << endl;
+    cout << "New Details:" << endl;
+    cout << "Name: " << staffs[id].name << endl;
+    cout << "CNIC: " << staffs[id].cnic << endl;
+    cout << "Phone: " << staffs[id].phone << endl;
+    cout << "Email: " << staffs[id].email << endl;
+    cout << "Address: " << staffs[id].address << endl;
+    cout << "Role: " << staffs[id].role << endl;
+    cout << "Status: " << staffs[id].status << endl;
+}
+
+void delete_staff()
+{
+    cout << "You are deleting a Staff Member" << endl;
+    cout << "Enter Staff ID to delete: ";
+    int id;
+    cin >> id;
+
+    if (staffs[id].name == "Unknown")
+    {
+        cout << "Staff not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Are you sure you want to delete " << staffs[id].name << endl;
+    cout << " 1 -> Yes" << endl;
+    cout << " 0 -> No" << endl;
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        staffs[id].name = "Unknown";
+        staffs[id].cnic = "Unknown";
+        staffs[id].phone = "Unknown";
+        staffs[id].email = "Unknown";
+        staffs[id].address = "Unknown";
+        staffs[id].role = "Unknown";
+        staffs[id].status = "Unknown";
+
+        cout << "Staff Member Deleted Successfully!" << endl;
+        break;
+    case 0:
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
+}
+
+void discount_management()
+{
+    cout << "Discount Management Menu:" << endl;
+    cout << " 1 -> Add Discount" << endl;
+    cout << " 2 -> Edit Discount" << endl;
+    cout << " 3 -> Delete Discount" << endl;
+    cout << " 0 -> Exit" << endl;
+
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        add_discount();
+        break;
+    case 2:
+        edit_discount();
+        break;
+    case 3:
+        delete_discount();
+        break;
+    case 0:
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
+}
+
+void add_discount()
+{
+
+    cout << "You are adding a Discount" << endl;
+    discount_id++;
+add_discount:
+
+    cout << "Enter Discount Name: ";
+    cin.ignore();
+    string name;
+    getline(cin, name);
+    discounts[discount_id].name = name;
+    cout << "Enter Discount Percentage: ";
+    double discount;
+    cin >> discount;
+    discounts[discount_id].discount = discount;
+    discount_id++;
+    cout << "Discount Added Successfully!" << endl;
+}
+
+void edit_discount()
+{
+    cout << "You are editing a Discount" << endl;
+    cout << "Enter Discount ID to edit: ";
+    int id;
+    cin >> id;
+
+    if (discounts[id].name == "Unknown")
+    {
+        cout << "Discount not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Discount Details:" << endl;
+    cout << "Name: " << discounts[id].name << endl;
+    cout << "Discount Percentage: " << discounts[id].discount << endl;
+
+    cout << "Enter new details for this discount:" << endl;
+
+    cout << "Enter Discount Name: ";
+    cin.ignore();
+    string name;
+    getline(cin, name);
+    discounts[id].name = name;
+    cout << "Enter Discount Percentage: ";
+    double discount;
+    cin >> discount;
+    discounts[id].discount = discount;
+
+    cout << "Discount Updated Successfully!" << endl;
+}
+
+void delete_discount()
+{
+    cout << "You are deleting a Discount" << endl;
+    cout << "Enter Discount ID to delete: ";
+    int id;
+    cin >> id;
+
+    if (discounts[id].name == "Unknown")
+    {
+        cout << "Discount not found. Please try again." << endl;
+        return;
+    }
+
+    cout << "Are you sure you want to delete " << discounts[id].name << endl;
+    cout << " 1 -> Yes" << endl;
+    cout << " 0 -> No" << endl;
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        discounts[id].name = "Unknown";
+        discounts[id].discount = 0.0;
+
+        cout << "Discount Deleted Successfully!" << endl;
+        break;
+    case 0:
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
+}
+
+void view_feedbacks()
+{
+    cout << "You are in Feedbacks List:" << endl;
+    cout << " 1 -> View Unread Feedbacks" << endl;
+    cout << " 2 -> View Read Feedbacks" << endl;
+    cout << " 0 -> Exit" << endl;
+
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        cout << "Unread Feedbacks:" << endl;
+        for (int i = 0; i < 100; i++)
+        {
+            if (feedbacks[i].status == "Read" || feedbacks[i].status == "Unknown")
+            {
+                continue;
+            }
+            cout << "Feedback ID: " << i << endl;
+            cout << "Customer Name: " << feedbacks[i].customer_name << endl;
+            cout << "Stars: " << feedbacks[i].stars << endl;
+            cout << "Comments: " << feedbacks[i].comments << endl;
+            cout << "Date: " << feedbacks[i].date << endl;
+            cout << "Status: " << feedbacks[i].status << endl;
+            cout << endl;
+        }
+        break;
+    case 2:
+        cout << "Read Feedbacks:" << endl;
+        for (int i = 0; i < 100; i++)
+        {
+            if (feedbacks[i].status == "Unread" || feedbacks[i].status == "Unknown")
+            {
+                continue;
+            }
+            cout << "Feedback ID: " << i << endl;
+            cout << "Customer Name: " << feedbacks[i].customer_name << endl;
+            cout << "Stars: " << feedbacks[i].stars << endl;
+            cout << "Comments: " << feedbacks[i].comments << endl;
+            cout << "Date: " << feedbacks[i].date << endl;
+            cout << "Status: " << feedbacks[i].status << endl;
+            cout << endl;
+        }
+        cout << " 1 -> Mark All Feedbacks as Read" << endl;
+        cout << " 0 -> Back" << endl;
+        int choice;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            for (int i = 0; i < 100; i++)
+            {
+                if (feedbacks[i].status == "Unread")
+                {
+                    feedbacks[i].status = "Read";
+                }
+            }
+            cout << "All Feedbacks Marked as Read!" << endl;
+            break;
+
+        case 0:
+            return;
+        default:
+            cout << "Invalid choice! Please try again." << endl;
+            break;
+        }
+        break;
+    case 0:
+
+        return;
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        break;
+    }
 }
