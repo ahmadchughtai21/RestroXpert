@@ -11,7 +11,7 @@ int table_id = 0;
 int user_id = 0;
 int discount_id = 0;
 
-// Prototype of used functions
+// Prototypes of used functions
 void admin_menu2();
 void inventory_management();
 void view_inventory();

@@ -12,7 +12,17 @@ main_menu:
 
     while (true)
     {
-        cout << "RestroXpert - Main Menu" << endl;
+        cout << " 888888   8888888   88888    888888  888888     888    88    88 888888   8888888  888888    888888 " << endl;
+        cout << "  88  88   88  88  88   88   8 88 8   88  88   88 88    88  88   88  88   88  88   88  88   8 88 8 " << endl;
+        cout << "  88  88   88      888         88     88  88  88   88    8888    88  88   88       88  88     88   " << endl;
+        cout << "  88888    8888      888       88     88888   88   88     88     88888    8888     88888      88   " << endl;
+        cout << "  88 88    88          888     88     88 88   88   88    8888    88       88       88 88      88   " << endl;
+        cout << "  88  88   88  88  88   88     88     88  88   88 88    88  88   88       88  88   88  88     88   " << endl;
+        cout << "  88   88 8888888   88888     8888    88   88   888    88    88 8888     8888888   88   88   8888  " << endl;
+
+        cout << endl;
+        cout << " ************************************************************************************************* " << endl;
+        cout << " ************************************ RestroXpert - Main Menu ************************************ " << endl;
         cout << " 1 -> Admin Panel" << endl;
         cout << " 2 -> Order Food" << endl; // take order and end me ask if home delivery or dine in or us hisaab se seats and table book krne hn
         cout << " 3 -> Staff Attendance" << endl;
