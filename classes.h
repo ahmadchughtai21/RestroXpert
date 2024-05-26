@@ -59,16 +59,20 @@ public:
 class Customer : public User
 {
 public:
+    string username;
+    string password;
     string phone;
     string email;
+    string address;
     int order_count;
 
     Customer()
     {
-        name = "Unknown";
+        username = "Unknown";
+        password = "Not Set";
         phone = "Unknown";
         email = "Unknown";
-        order_count = 0;
+        address = "Guest";
     }
 };
 
