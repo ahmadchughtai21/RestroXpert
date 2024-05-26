@@ -40,6 +40,7 @@ void edit_staff();
 void delete_staff();
 void discount_management();
 void view_feedbacks();
+void discount_list();
 void add_discount();
 void edit_discount();
 void delete_discount();
