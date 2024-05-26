@@ -71,12 +71,12 @@ void admin_menu2()
     {
         cout << "Admin Menu:" << endl;
         cout << " 1 -> Inventory Management" << endl; // completed
-        cout << " 2 -> Order Management" << endl;
-        cout << " 3 -> Get Reports" << endl;
-        cout << " 4 -> Table Management" << endl;
-        cout << " 5 -> User Management" << endl;
-        cout << " 6 -> Discount Management" << endl;
-        cout << " 7 -> View Feedbacks" << endl;
+        cout << " 2 -> Order Management" << endl;   // completed
+        cout << " 3 -> Get Reports" << endl;    // completed
+        cout << " 4 -> Table Management" << endl;   // completed
+        cout << " 5 -> User Management" << endl;   // completed
+        cout << " 6 -> Discount Management" << endl;   // completed
+        cout << " 7 -> View Feedbacks" << endl;    // completed
         cout << " 0 -> Exit" << endl;
 
         int choice;
