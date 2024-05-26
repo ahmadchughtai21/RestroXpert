@@ -71,12 +71,12 @@ void admin_menu2()
     {
         cout << "Admin Menu:" << endl;
         cout << " 1 -> Inventory Management" << endl; // completed
-        cout << " 2 -> Order Management" << endl;   // completed
-        cout << " 3 -> Get Reports" << endl;    // completed
-        cout << " 4 -> Table Management" << endl;   // completed
-        cout << " 5 -> User Management" << endl;   // completed
-        cout << " 6 -> Discount Management" << endl;   // completed
-        cout << " 7 -> View Feedbacks" << endl;    // completed
+        cout << " 2 -> Order Management" << endl;     // completed
+        cout << " 3 -> Get Reports" << endl;          // completed
+        cout << " 4 -> Table Management" << endl;     // completed
+        cout << " 5 -> User Management" << endl;      // completed
+        cout << " 6 -> Discount Management" << endl;  // completed
+        cout << " 7 -> View Feedbacks" << endl;       // completed
         cout << " 0 -> Exit" << endl;
 
         int choice;
@@ -593,7 +593,11 @@ void edit_table()
     int capacity;
     cin >> capacity;
     tables[id].capacity = capacity;
-    tables[id].status = "Available";
+    cout << "Enter Table Status: ";
+    string status;
+    cin >> status;
+    tables[id].status = status;
+
     cout << "Table Updated Successfully!" << endl;
 }
 
