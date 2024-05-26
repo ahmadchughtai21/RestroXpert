@@ -867,9 +867,11 @@ void delete_staff()
 void discount_management()
 {
     cout << "Discount Management Menu:" << endl;
-    cout << " 1 -> Add Discount" << endl;
-    cout << " 2 -> Edit Discount" << endl;
-    cout << " 3 -> Delete Discount" << endl;
+
+    cout << " 1 -> View Discount List" << endl;
+    cout << " 2 -> Add Discount" << endl;
+    cout << " 3 -> Edit Discount" << endl;
+    cout << " 4 -> Delete Discount" << endl;
     cout << " 0 -> Exit" << endl;
 
     int choice;
@@ -879,12 +881,15 @@ void discount_management()
     switch (choice)
     {
     case 1:
-        add_discount();
+        discount_list();
         break;
     case 2:
-        edit_discount();
+        add_discount();
         break;
     case 3:
+        edit_discount();
+        break;
+    case 4:
         delete_discount();
         break;
     case 0:
@@ -892,6 +897,21 @@ void discount_management()
     default:
         cout << "Invalid choice! Please try again." << endl;
         break;
+    }
+}
+void discount_list()
+{
+    cout << "Discount List:" << endl;
+    for (int i = 0; i < 100; i++)
+    {
+        if (discounts[i].name == "Unknown")
+        {
+            continue;
+        }
+        cout << "Discount ID: " << i << endl;
+        cout << "Name: " << discounts[i].name << endl;
+        cout << "Discount Percentage: " << discounts[i].discount << endl;
+        cout << endl;
     }
 }
 
@@ -1011,23 +1031,6 @@ void view_feedbacks()
             cout << "Status: " << feedbacks[i].status << endl;
             cout << endl;
         }
-        break;
-    case 2:
-        cout << "Read Feedbacks:" << endl;
-        for (int i = 0; i < 100; i++)
-        {
-            if (feedbacks[i].status == "Unread" || feedbacks[i].status == "Unknown")
-            {
-                continue;
-            }
-            cout << "Feedback ID: " << i << endl;
-            cout << "Customer Name: " << feedbacks[i].customer_name << endl;
-            cout << "Stars: " << feedbacks[i].stars << endl;
-            cout << "Comments: " << feedbacks[i].comments << endl;
-            cout << "Date: " << feedbacks[i].date << endl;
-            cout << "Status: " << feedbacks[i].status << endl;
-            cout << endl;
-        }
         cout << " 1 -> Mark All Feedbacks as Read" << endl;
         cout << " 0 -> Back" << endl;
         int choice;
@@ -1052,6 +1055,24 @@ void view_feedbacks()
             cout << "Invalid choice! Please try again." << endl;
             break;
         }
+        break;
+    case 2:
+        cout << "Read Feedbacks:" << endl;
+        for (int i = 0; i < 100; i++)
+        {
+            if (feedbacks[i].status == "Unread" || feedbacks[i].status == "Unknown")
+            {
+                continue;
+            }
+            cout << "Feedback ID: " << i << endl;
+            cout << "Customer Name: " << feedbacks[i].customer_name << endl;
+            cout << "Stars: " << feedbacks[i].stars << endl;
+            cout << "Comments: " << feedbacks[i].comments << endl;
+            cout << "Date: " << feedbacks[i].date << endl;
+            cout << "Status: " << feedbacks[i].status << endl;
+            cout << endl;
+        }
+
         break;
     case 0:
 
