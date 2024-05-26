@@ -8,7 +8,6 @@
 #include "classes.h"
 
 // Global Variables for Counter
-int changes;
 int item_id;
 int table_id;
 int user_id;
