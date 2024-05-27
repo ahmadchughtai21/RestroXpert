@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "classes.h"
 #include <iostream>
 #include <vector>
@@ -7,7 +6,7 @@
 #include <iomanip>
 
  using namespace std;
- 
+
  void delivery();
  void dining();
  void display_menu();
