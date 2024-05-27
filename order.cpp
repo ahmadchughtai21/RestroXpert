@@ -4,8 +4,13 @@
 #include <string>
 #include <map>
 #include <iomanip>
+#include <windows.h>
+#include <fstream>
+
+
 
  using namespace std;
+
 
  void delivery();
  void dining();
@@ -33,12 +38,22 @@
             goto order; 
       }
     }
- 
+    
     void delivery(){
-       cout << "delivery";
 
-       display_menu();
+      for(int i=0;i<=100;i++){
+       cout << "Enter Your Address ...."<< endl;
+       cout << "House No : ";
+       cin.ignore();
+       getline(cin,addresses[i].house_no);
+       cout << "street : ";
+       getline(cin,addresses[i].street);
+       cout << "city : ";
+       getline(cin,addresses[i].city);
+       cout << "Country : ";
+       getline(cin,addresses[i].country);
        
+      }
     }
     void dining(){
        cout << "dining";

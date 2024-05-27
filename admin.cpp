@@ -138,7 +138,6 @@ void admin_menu2()
 
 void inventory_management()
 {
-
     while (true)
     {
         cout << "Inventory Management Menu:" << endl;
