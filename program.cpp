@@ -6,7 +6,7 @@
 #include "feedback.cpp"
 
 // #include "classes.h"
-
+void order();
 void admin();
 void load_changes();
 void save_changes();
@@ -49,7 +49,7 @@ int main()
             admin();
             break;
         case 2:
-            // Order Food code here
+            order();
             break;
         case 3:
             // Staff Attendance code here
