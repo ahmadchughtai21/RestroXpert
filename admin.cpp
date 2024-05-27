@@ -1106,21 +1106,21 @@ void view_feedbacks()
 
 void reset_to_default()
 {
-    item_id = -1;
-    table_id = -1;
-    user_id = -1;
-    discount_id = -1;
+    item_id = 9;
+    table_id = 0;
+    user_id = 0;
+    discount_id = 0;
     password = "";
-    items[1].name = "Shawarma";
-    items[2].name = "Pizza";
-    items[3].name = "Burger";
-    items[4].name = "Sandwich";
-    items[5].name = "Pasta";
-    items[6].name = "Fries";
-    items[7].name = "Salad";
-    items[8].name = "Soup";
-    items[9].name = "Drink";
-    items[10].name = "Dessert";
+    items[0].name = "Shawarma";
+    items[1].name = "Pizza";
+    items[2].name = "Burger";
+    items[3].name = "Sandwich";
+    items[4].name = "Pasta";
+    items[5].name = "Fries";
+    items[6].name = "Salad";
+    items[7].name = "Soup";
+    items[8].name = "Drink";
+    items[9].name = "Dessert";
 
     save_changes();
 }
