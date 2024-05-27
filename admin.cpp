@@ -280,6 +280,7 @@ void edit_item()
     cin >> quantity;
     items[id].quantity = quantity;
     cout << "Item Updated Successfully!" << endl;
+    save_changes();
 }
 
 void delete_item()
@@ -301,6 +302,7 @@ void delete_item()
     items[id].quantity = 0;
 
     cout << "Item Deleted Successfully!" << endl;
+    save_changes();
 }
 
 void update_quantity()
@@ -327,6 +329,7 @@ void update_quantity()
     cin >> quantity;
     items[id].quantity = quantity;
     cout << "Quantity Updated Successfully!" << endl;
+    save_changes();
 }
 
 void order_management()
@@ -384,6 +387,7 @@ void view_orders()
         cout << "Order Type: " << orders[i].order_type << endl;
         cout << endl;
     }
+    save_changes();
 }
 
 void edit_order_status()
@@ -413,6 +417,7 @@ void edit_order_status()
     getline(cin, status);
     orders[id].order_status = status;
     cout << "Order Status Updated Successfully!" << endl;
+    save_changes();
 }
 
 void cancel_order()
@@ -430,6 +435,7 @@ void cancel_order()
 
     orders[id].order_status = "Cancelled";
     cout << "Order Cancelled Successfully!" << endl;
+    save_changes();
 }
 
 void view_cancelled_orders()
@@ -450,6 +456,7 @@ void view_cancelled_orders()
         cout << "Order Type: " << orders[i].order_type << endl;
         cout << endl;
     }
+    save_changes();
 }
 
 void reports()
@@ -506,6 +513,8 @@ void generate_financial_report()
     cout << "Financial Report as of " << t.wDay << "/" << t.wMonth << "/" << t.wYear << endl;
     cout << "Total Sales: " << total_sales << endl;
     cout << "Total Profit: " << total_profit << endl;
+    cout << "Financial Report Generated Successfully!" << endl;
+    save_changes();
 }
 
 void stock_report()
@@ -528,6 +537,7 @@ void stock_report()
         }
         cout << "Stock Report Generated Successfully! (If empty, all items are in stock or there are no items in inventory)";
     }
+    save_changes();
 }
 void table_management()
 {
@@ -563,6 +573,7 @@ void table_management()
         cout << "Invalid choice! Please try again." << endl;
         break;
     }
+    save_changes();
 }
 
 void view_tables()
@@ -579,6 +590,8 @@ void view_tables()
         cout << "Table Status: " << tables[i].status << endl;
         cout << endl;
     }
+
+    save_changes();
 }
 
 void add_table()
@@ -592,6 +605,9 @@ add_table:
     cin >> capacity;
     tables[table_id].capacity = capacity;
     tables[table_id].status = "Available";
+
+    cout << "Table Added Successfully!" << endl;
+    save_changes();
 }
 
 void edit_table()
@@ -623,6 +639,7 @@ void edit_table()
     tables[id].status = status;
 
     cout << "Table Updated Successfully!" << endl;
+    save_changes();
 }
 
 void delete_table()
@@ -642,6 +659,7 @@ void delete_table()
     tables[id].status = "Unknown";
 
     cout << "Table Deleted Successfully!" << endl;
+    save_changes();
 }
 
 void user_management()
@@ -710,6 +728,7 @@ void view_all_staff()
         cout << "Invalid choice! Please try again." << endl;
         break;
     }
+    save_changes();
 }
 
 void get_staff_details()
@@ -732,6 +751,8 @@ void get_staff_details()
     cout << "Address: " << staffs[id].address << endl;
     cout << "Role: " << staffs[id].role << endl;
     cout << "Status: " << staffs[id].status << endl;
+
+    save_changes();
 }
 
 void add_staff()
@@ -780,6 +801,8 @@ add_staff:
     cout << "Address: " << staffs[user_id].address << endl;
     cout << "Role: " << staffs[user_id].role << endl;
     cout << "Status: " << staffs[user_id].status << endl;
+
+    save_changes();
 }
 
 void edit_staff()
@@ -846,6 +869,8 @@ void edit_staff()
     cout << "Address: " << staffs[id].address << endl;
     cout << "Role: " << staffs[id].role << endl;
     cout << "Status: " << staffs[id].status << endl;
+
+    save_changes();
 }
 
 void delete_staff()
@@ -886,6 +911,8 @@ void delete_staff()
         cout << "Invalid choice! Please try again." << endl;
         break;
     }
+
+    save_changes();
 }
 
 void discount_management()
@@ -937,6 +964,7 @@ void discount_list()
         cout << "Discount Percentage: " << discounts[i].discount << endl;
         cout << endl;
     }
+    save_changes();
 }
 
 void add_discount()
@@ -957,6 +985,7 @@ add_discount:
     discounts[discount_id].discount = discount;
     discount_id++;
     cout << "Discount Added Successfully!" << endl;
+    save_changes();
 }
 
 void edit_discount()
@@ -989,6 +1018,7 @@ void edit_discount()
     discounts[id].discount = discount;
 
     cout << "Discount Updated Successfully!" << endl;
+    save_changes();
 }
 
 void delete_discount()
@@ -1024,6 +1054,7 @@ void delete_discount()
         cout << "Invalid choice! Please try again." << endl;
         break;
     }
+    save_changes();
 }
 
 void view_feedbacks()
@@ -1105,6 +1136,7 @@ void view_feedbacks()
         cout << "Invalid choice! Please try again." << endl;
         break;
     }
+    save_changes();
 }
 
 void reset_to_default()
