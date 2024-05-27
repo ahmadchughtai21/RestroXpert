@@ -231,6 +231,9 @@ add_item:
     int quantity;
     cin >> quantity;
     items[item_id].quantity = quantity;
+
+    cout << "Item Added Successfully!" << endl;
+    save_changes();
 }
 
 void edit_item()
@@ -1106,21 +1109,15 @@ void view_feedbacks()
 
 void reset_to_default()
 {
-    item_id = 9;
+    item_id = 0;
     table_id = 0;
     user_id = 0;
     discount_id = 0;
     password = "";
-    items[0].name = "Shawarma";
-    items[1].name = "Pizza";
-    items[2].name = "Burger";
-    items[3].name = "Sandwich";
-    items[4].name = "Pasta";
-    items[5].name = "Fries";
-    items[6].name = "Salad";
-    items[7].name = "Soup";
-    items[8].name = "Drink";
-    items[9].name = "Dessert";
+    for (int i = 0; i < 100; i++)
+    {
+        items[i].name = "Unknown";
+    }
 
     save_changes();
 }
@@ -1152,7 +1149,7 @@ void save_changes()
     fout << password;
     fout << endl;
 
-    for (int i = 0; i < 100; ++i)
+    for (int i = 0; i < 100; i++)
     {
         fout << items[i].name;
         fout << endl;
@@ -1171,7 +1168,7 @@ void load_changes()
     fin >> discount_id; // 4
     fin >> password;    // 5
 
-    for (int i = 0; i < 100; ++i)
+    for (int i = 0; i < 100; i++)
     {
         getline(fin, items[i].name); // 6 to 105
     }
