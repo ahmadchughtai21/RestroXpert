@@ -50,6 +50,8 @@ void edit_discount();
 void delete_discount();
 void view_feedbacks();
 void reset_to_default();
+void save_changes();
+void load_changes();
 
 void admin()
 {
@@ -64,6 +66,7 @@ void enter_password()
         cout << "Please set a password for the Admin Panel: ";
         cin >> password;
         cout << "Password set successfully!" << endl;
+        save_changes();
     }
     cout << "Enter Password to access Admin Panel: ";
     string pass;
@@ -185,7 +188,7 @@ void view_inventory()
     cout << "Inventory List:" << endl;
     for (int i = 0; i < 100; i++)
     {
-        if (items[i].name == "Unknown")
+        if (items[i].name == "Unknown" || items[i].name == "")
         {
             continue;
         }
@@ -1101,19 +1104,38 @@ void view_feedbacks()
     }
 }
 
-// File Handling Functions
-
-void load_changes()
+void reset_to_default()
 {
-    ifstream fin;
-    fin.open("backend.txt");
-    fin >> item_id;
-    fin >> table_id;
-    fin >> user_id;
-    fin >> discount_id;
-    fin >> password;
-    fin.close();
+    item_id = -1;
+    table_id = -1;
+    user_id = -1;
+    discount_id = -1;
+    password = "";
+    items[1].name = "Shawarma";
+    items[2].name = "Pizza";
+    items[3].name = "Burger";
+    items[4].name = "Sandwich";
+    items[5].name = "Pasta";
+    items[6].name = "Fries";
+    items[7].name = "Salad";
+    items[8].name = "Soup";
+    items[9].name = "Drink";
+    items[10].name = "Dessert";
+
+    save_changes();
 }
+void changes_view()
+{
+
+    cout << "Showing Database Tables ( Maintainance Mode !!! )" << endl;
+    cout << "Item ID: " << item_id << endl;
+    cout << "Table ID: " << table_id << endl;
+    cout << "User ID: " << user_id << endl;
+    cout << "Discount ID: " << discount_id << endl;
+    cout << "Password: " << password << endl;
+}
+
+// File Handling Functions
 
 void save_changes()
 {
@@ -1128,27 +1150,31 @@ void save_changes()
     fout << discount_id;
     fout << endl;
     fout << password;
+    fout << endl;
+
+    for (int i = 0; i < 100; ++i)
+    {
+        fout << items[i].name;
+        fout << endl;
+    }
+
     fout.close();
 }
 
-void changes_view()
+void load_changes()
 {
+    ifstream fin;
+    fin.open("backend.txt");
+    fin >> item_id;     // 1
+    fin >> table_id;    // 2
+    fin >> user_id;     // 3
+    fin >> discount_id; // 4
+    fin >> password;    // 5
 
-    cout << "Showing Database Tables ( Maintainance Mode !!! )" << endl;
-    cout << "Item ID: " << item_id << endl;
-    cout << "Table ID: " << table_id << endl;
-    cout << "User ID: " << user_id << endl;
-    cout << "Discount ID: " << discount_id << endl;
-    cout << "Password: " << password << endl;
-}
+    for (int i = 0; i < 100; ++i)
+    {
+        getline(fin, items[i].name); // 6 to 105
+    }
 
-void reset_to_default()
-{
-    item_id = 0;
-    table_id = 0;
-    user_id = 0;
-    discount_id = 0;
-    password = "";
-
-    save_changes();
+    fin.close();
 }

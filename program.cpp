@@ -13,7 +13,7 @@ void changes_view();
 void feedback_panel();
 int main()
 {
-    // changes_view(); // mantainance mode
+    changes_view(); // mantainance mode
     load_changes();
 
     int choice;
@@ -36,6 +36,7 @@ int main()
         cout << " 2 -> Order Food" << endl; // take order and end me ask if home delivery or dine in or us hisaab se seats and table book krne hn
         cout << " 3 -> Staff Attendance" << endl;
         cout << " 4 -> Feedback Panel" << endl;
+        cout << " 5 -> Save and Continue" << endl;
         cout << " 0 -> Save and Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -53,6 +54,11 @@ int main()
             break;
         case 4:
             feedback_panel();
+            break;
+        case 5:
+            cout << "Saving changes..." << endl;
+            save_changes();
+            cout << "Changes saved successfully." << endl;
             break;
 
         case 0:
