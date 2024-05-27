@@ -130,7 +130,6 @@ public:
         city = "Unknown";
         country = "Unknown";
     }
-    
 };
 
 class Discounts
@@ -169,7 +168,6 @@ Order orders[100];
 User users[100];
 Staff staffs[100];
 Customer customers[100];
-Address addresses[100];
 Table tables[100];
 Discounts discounts[100];
 Feedback feedbacks[100];
