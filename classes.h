@@ -11,7 +11,6 @@ class Item
 {
 public:
     string name;
-    string category;
     double o_price; // Original Price
     double price;   // Selling Price
     int quantity;
@@ -172,8 +171,5 @@ Customer customers[100];
 Table tables[100];
 Discounts discounts[100];
 Feedback feedbacks[100];
-
-
-
 
 #endif

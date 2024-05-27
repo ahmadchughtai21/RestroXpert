@@ -6,17 +6,16 @@
 #include "feedback.cpp"
 
 // #include "classes.h"
-void order();
+
 void admin();
 void load_changes();
 void save_changes();
 void changes_view();
-void reset_to_default();
 void feedback_panel();
 int main()
 {
-    // changes_view(); // mantainance mode
     load_changes();
+    changes_view(); // mantainance mode
 
     int choice;
 
@@ -38,7 +37,7 @@ int main()
         cout << " 2 -> Order Food" << endl; // take order and end me ask if home delivery or dine in or us hisaab se seats and table book krne hn
         cout << " 3 -> Staff Attendance" << endl;
         cout << " 4 -> Feedback Panel" << endl;
-        cout << " 5 -> Reset to Default" << endl;
+        cout << " 5 -> Save and Continue" << endl;
         cout << " 0 -> Save and Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -58,7 +57,9 @@ int main()
             feedback_panel();
             break;
         case 5:
-            reset_to_default();
+            cout << "Saving changes..." << endl;
+            save_changes();
+            cout << "Changes saved successfully." << endl;
             break;
 
         case 0:
@@ -66,7 +67,7 @@ int main()
             save_changes();
             cout << "Exiting RestroXpert. Goodbye!" << endl;
 
-            // changes_view(); // mantainance mode
+            changes_view(); // mantainance mode
 
             return 0;
         default:
