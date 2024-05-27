@@ -11,7 +11,6 @@ class Item
 {
 public:
     string name;
-    string category;
     double o_price; // Original Price
     double price;   // Selling Price
     int quantity;
