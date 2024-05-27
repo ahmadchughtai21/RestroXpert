@@ -54,4 +54,35 @@ void dining()
 
 void display_menu()
 {
+    cout << "Menu" << endl;
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (
+            items[i].name == "Unknown" || items[i].name == "")
+        {
+            continue;
+        }
+        cout << " " << i + 1 << " -> " << items[i].name << endl
+             << "Price = " << items[i].price << endl;
+    }
+
+    cout << "Enter the item number you want to order (0 to exit): ";
+    int list[100];
+    int i = 0;
+    while (true)
+    {
+        cin >> list[i];
+        if (list[i] == 0)
+        {
+            break;
+        }
+        i++;
+    }
+
+    cout << "You have selected the following items: " << endl;
+    for (int j = 0; j < i; j++)
+    {
+        cout << items[list[j] - 1].name << " - " << items[list[j] - 1].price << endl;
+    }
 }

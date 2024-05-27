@@ -5,10 +5,11 @@
 #include <string>
 #include <windows.h>
 #include <fstream>
+#include <sstream>
 #include "classes.h"
 
 // Global Variables for Counter
-int item_id;
+// int item_id;
 int table_id;
 int user_id;
 int discount_id;
@@ -192,20 +193,34 @@ void view_inventory()
         {
             continue;
         }
-        cout << "Item ID: " << i << endl;
-        cout << "Name: " << items[i].name << endl;
-        cout << "Original Price: " << items[i].o_price << endl;
-        cout << "Selling Price: " << items[i].price << endl;
-        cout << "Profit per Sale: " << items[i].price - items[i].o_price << endl; // "Profit: Selling Price - Original Price
-        cout << "Quantity: " << items[i].quantity << endl;
-        cout << endl;
+        else
+        {
+            cout << "Item ID: " << i << endl;
+            cout << "Name: " << items[i].name << endl;
+            cout << "Original Price: " << items[i].o_price << endl;
+            cout << "Selling Price: " << items[i].price << endl;
+            cout << "Profit per Sale: " << items[i].price - items[i].o_price << endl; // "Profit: Selling Price - Original Price
+            cout << "Quantity: " << items[i].quantity << endl;
+            cout << endl;
+        }
     }
 }
 
 void add_item()
 {
     cout << "You are adding an Item" << endl;
-    item_id++;
+    int index = -1;
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (items[i].name == "Unknown")
+        {
+            index = i;
+            found = true;
+            break;
+        }
+    }
+    // item_id++;
 add_item:
 
     cout << "Enter Item Name: ";
@@ -213,11 +228,11 @@ add_item:
     string name;
     getline(cin, name);
 
-    items[item_id].name = name;
+    items[index].name = name;
     cout << "Enter Item Original Price: ";
     double o_price;
     cin >> o_price;
-    items[item_id].o_price = o_price;
+    items[index].o_price = o_price;
     cout << "Enter Item Selling Price: ";
     double price;
     cin >> price;
@@ -226,11 +241,11 @@ add_item:
         cout << "Selling price cannot be less than original price. Please try again." << endl;
         goto add_item;
     }
-    items[item_id].price = price;
+    items[index].price = price;
     cout << "Enter Item Quantity: ";
     int quantity;
     cin >> quantity;
-    items[item_id].quantity = quantity;
+    items[index].quantity = quantity;
 
     cout << "Item Added Successfully!" << endl;
     save_changes();
@@ -1141,7 +1156,7 @@ void view_feedbacks()
 
 void reset_to_default()
 {
-    item_id = 0;
+    // item_id = 0;
     table_id = 0;
     user_id = 0;
     discount_id = 0;
@@ -1157,7 +1172,7 @@ void changes_view()
 {
 
     cout << "Showing Database Tables ( Maintainance Mode !!! )" << endl;
-    cout << "Item ID: " << item_id << endl;
+    // cout << "Item ID: " << item_id << endl;
     cout << "Table ID: " << table_id << endl;
     cout << "User ID: " << user_id << endl;
     cout << "Discount ID: " << discount_id << endl;
@@ -1169,9 +1184,9 @@ void changes_view()
 void save_changes()
 {
     ofstream fout;
-    fout.open("backend.txt");
-    fout << item_id;
-    fout << endl;
+    fout.open("database.txt");
+    // fout << item_id;
+    // fout << endl;
     fout << table_id;
     fout << endl;
     fout << user_id;
@@ -1186,6 +1201,11 @@ void save_changes()
         fout << items[i].name;
         fout << endl;
     }
+    for (int i = 0; i < 100; i++)
+    {
+        fout << items[i].price;
+        fout << endl;
+    }
 
     fout.close();
 }
@@ -1193,17 +1213,35 @@ void save_changes()
 void load_changes()
 {
     ifstream fin;
-    fin.open("backend.txt");
-    fin >> item_id;     // 1
-    fin >> table_id;    // 2
-    fin >> user_id;     // 3
-    fin >> discount_id; // 4
-    fin >> password;    // 5
+    fin.open("database.txt");
+    // fin >> item_id;
+    fin >> table_id;
+    fin >> user_id;
+    fin >> discount_id;
+    fin >> password;
 
     for (int i = 0; i < 100; i++)
     {
-        getline(fin, items[i].name); // 6 to 105
+        getline(fin, items[i].name);
     }
+    // for (int i = 0; i < 100; i++)
+    // {
+    //     fin >> items[i].price;
+    // }
 
+    for (int i = 0; i < 100; i++)
+    {
+        string line;
+        getline(fin, line);
+        stringstream ss(line);
+        ss >> items[i].price;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        string line;
+        getline(fin, line);
+        stringstream ss(line);
+        ss >> items[i].quantity;
+    }
     fin.close();
 }
