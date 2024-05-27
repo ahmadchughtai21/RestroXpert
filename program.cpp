@@ -4,18 +4,16 @@
 #include "order.cpp"
 #include "attendance.cpp"
 #include "feedback.cpp"
-
-// #include "classes.h"
+#include "classes.h"
 
 void admin();
 void load_changes();
 void save_changes();
 void changes_view();
-void reset_to_default();
 void feedback_panel();
 int main()
 {
-    // changes_view(); // mantainance mode
+    changes_view(); // mantainance mode
     load_changes();
 
     int choice;
@@ -38,7 +36,6 @@ int main()
         cout << " 2 -> Order Food" << endl; // take order and end me ask if home delivery or dine in or us hisaab se seats and table book krne hn
         cout << " 3 -> Staff Attendance" << endl;
         cout << " 4 -> Feedback Panel" << endl;
-        cout << " 5 -> Reset to Default" << endl;
         cout << " 0 -> Save and Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -57,16 +54,13 @@ int main()
         case 4:
             feedback_panel();
             break;
-        case 5:
-            reset_to_default();
-            break;
 
         case 0:
             cout << "Saving changes and exiting RestroXpert..." << endl;
             save_changes();
             cout << "Exiting RestroXpert. Goodbye!" << endl;
 
-            // changes_view(); // mantainance mode
+            changes_view(); // mantainance mode
 
             return 0;
         default:

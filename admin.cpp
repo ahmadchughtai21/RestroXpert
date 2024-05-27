@@ -12,8 +12,10 @@ int item_id;
 int table_id;
 int user_id;
 int discount_id;
+string password = "";
 
 // Prototypes of used functions
+void enter_password();
 void admin_menu2();
 void inventory_management();
 void view_inventory();
@@ -47,21 +49,34 @@ void add_discount();
 void edit_discount();
 void delete_discount();
 void view_feedbacks();
+void reset_to_default();
 
 void admin()
 {
 admin:
-    cout << "Enter Admin Password: ";
-    string password;
-    cin >> password;
+    enter_password();
+}
 
-    if (password != "admin")
+void enter_password()
+{
+    if (password == "")
+    {
+        cout << "Please set a password for the Admin Panel: ";
+        cin >> password;
+        cout << "Password set successfully!" << endl;
+    }
+    cout << "Enter Password to access Admin Panel: ";
+    string pass;
+    cin >> pass;
+    if (pass == password)
+    {
+        admin_menu2();
+    }
+    else
     {
         cout << "Incorrect Password! Please try again." << endl;
-        goto admin;
+        admin();
     }
-    cout << "Welcome Admin!" << endl;
-    admin_menu2();
 }
 
 void admin_menu2()
@@ -70,13 +85,14 @@ void admin_menu2()
     {
     admin_menu2:
         cout << "Admin Menu:" << endl;
-        cout << " 1 -> Inventory Management" << endl; // completed
-        cout << " 2 -> Order Management" << endl;     // completed
-        cout << " 3 -> Get Reports" << endl;          // completed
-        cout << " 4 -> Table Management" << endl;     // completed
-        cout << " 5 -> User Management" << endl;      // completed
-        cout << " 6 -> Discount Management" << endl;  // completed
-        cout << " 7 -> View Feedbacks" << endl;       // completed
+        cout << " 1 -> Inventory Management" << endl;      // completed
+        cout << " 2 -> Order Management" << endl;          // completed
+        cout << " 3 -> Get Reports" << endl;               // completed
+        cout << " 4 -> Table Management" << endl;          // completed
+        cout << " 5 -> User Management" << endl;           // completed
+        cout << " 6 -> Discount Management" << endl;       // completed
+        cout << " 7 -> View Feedbacks" << endl;            // completed
+        cout << " 8 -> Reset to Default Settings" << endl; // completed
         cout << " 0 -> Exit" << endl;
 
         int choice;
@@ -106,6 +122,8 @@ void admin_menu2()
         case 7:
             view_feedbacks();
             break;
+        case 8:
+            reset_to_default();
         case 0:
             return;
         default:
@@ -1093,6 +1111,7 @@ void load_changes()
     fin >> table_id;
     fin >> user_id;
     fin >> discount_id;
+    fin >> password;
     fin.close();
 }
 
@@ -1108,6 +1127,7 @@ void save_changes()
     fout << endl;
     fout << discount_id;
     fout << endl;
+    fout << password;
     fout.close();
 }
 
@@ -1117,6 +1137,7 @@ void changes_view()
     cout << "Table ID: " << table_id << endl;
     cout << "User ID: " << user_id << endl;
     cout << "Discount ID: " << discount_id << endl;
+    cout << "Password: " << password << endl;
 }
 
 void reset_to_default()
@@ -1125,6 +1146,7 @@ void reset_to_default()
     table_id = 0;
     user_id = 0;
     discount_id = 0;
+    password = "";
 
     save_changes();
 }

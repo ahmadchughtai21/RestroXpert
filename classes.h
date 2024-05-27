@@ -173,7 +173,4 @@ Table tables[100];
 Discounts discounts[100];
 Feedback feedbacks[100];
 
-
-
-
 #endif
