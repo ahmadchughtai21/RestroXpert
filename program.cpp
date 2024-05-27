@@ -12,7 +12,7 @@ void load_changes();
 void save_changes();
 void changes_view();
 void reset_to_default();
-
+void feedback_panel();
 int main()
 {
     // changes_view(); // mantainance mode
@@ -55,7 +55,7 @@ int main()
             // Staff Attendance code here
             break;
         case 4:
-            // Feedback Panel code here
+            feedback_panel();
             break;
         case 5:
             reset_to_default();
