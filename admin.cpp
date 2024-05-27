@@ -1133,6 +1133,8 @@ void save_changes()
 
 void changes_view()
 {
+
+    cout << "Showing Database Tables ( Maintainance Mode !!! )" << endl;
     cout << "Item ID: " << item_id << endl;
     cout << "Table ID: " << table_id << endl;
     cout << "User ID: " << user_id << endl;
