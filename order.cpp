@@ -5,6 +5,8 @@
 
 using namespace std;
 
+int total = 0;
+
 int main();
 void delivery();
 void sign_up();
@@ -242,12 +244,12 @@ void display_menu()
         cout << items[list[j] - 1].name << " ---------------------------- " << items[list[j] - 1].price << " Rs" << endl;
     }
 
-    int total = 0;
+    
     for (int j = 0; j < i; j++) // calculate the total bill
     {
         total = total + items[list[j] - 1].price;
     }
-    cout << "Total Bill: " << total << " Rs" << endl;
+   
 }
 
     void print_bill()
@@ -266,11 +268,11 @@ void display_menu()
      
     cout << "----- Bill -----" << endl;
     
-        for (int i = 0; i<=count; i++)
+   for (int j = 0; j < i; j++) // calculate the total bill
     {
-        cout << items[list[count]].name << " - " << items[list[count]].price << endl;
-        total=total+items[list[count]].price;
+        total = total + items[list[j] - 1].price;
     }
+    
     
     cout << "Total: $" << fixed << setprecision(2) << total << endl;
     cout << "----------------" << endl;
