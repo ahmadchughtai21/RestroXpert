@@ -63,8 +63,8 @@ void display_menu()
         {
             continue;
         }
-        cout << " " << i + 1 << " -> " << items[i].name << endl
-             << "Price = " << items[i].price << endl;
+        cout << " " << i + 1 << " -> " << items[i].name << " ----------------------------- "
+             << "Price = " << items[i].price << " Rs" << endl;
     }
 
     cout << "Enter the item number you want to order (0 to exit): ";
@@ -83,6 +83,13 @@ void display_menu()
     cout << "You have selected the following items: " << endl;
     for (int j = 0; j < i; j++)
     {
-        cout << items[list[j] - 1].name << " - " << items[list[j] - 1].price << endl;
+        cout << items[list[j] - 1].name << " ---------------------------- " << items[list[j] - 1].price << " Rs" << endl;
     }
+
+    int total = 0;
+    for (int j = 0; j < i; j++)
+    {
+        total = total + items[list[j] - 1].price;
+    }
+    cout << "Total Bill: " << total << " Rs" << endl;
 }
