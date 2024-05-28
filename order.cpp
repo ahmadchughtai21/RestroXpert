@@ -20,7 +20,6 @@ void dine_in();
 void display_menu();
 void set_table();
 
-
 void order()
 {
 order:
@@ -41,7 +40,7 @@ order:
         break;
     case 2:
         dine_in();
-        break;    
+        break;
     case 0:
         cout << "Exiting Order Panel..." << endl;
         main();
@@ -247,10 +246,53 @@ void display_menu()
 
     cout << "-------------------Menu-------------------" << endl;
 
-    
+    for (int i = 0; i < 100; i++)
+    {
+        if (items[i].name == "Unknown")
+        {
+            continue;
+        }
+        cout << i << " -> " << items[i].name << " - " << items[i].price << endl;
+    }
 
+    cout << "-----------------------------------------" << endl;
 
+    cout << "Enter how many items you want to order: ";
+    int items_count;
+    cin >> items_count;
 
+    for (int i = 0; i < items_count; i++)
+    {
+        cout << "Enter the item number: ";
+        cin >> orders[proceed].list[i];
+    }
+    for (int i = 0; i < items_count; i++)
+    {
+
+        items[orders[proceed].list[i]].quantity--;
+    }
+
+    for (int i = 0; i < items_count; i++)
+    {
+        total = total + items[orders[proceed].list[i]].price;
+        total_cost = total_cost + items[orders[proceed].list[i]].o_price;
+    }
+
+    cout << "------------------ Bill -----------------" << endl;
+    cout << "Your Ordered Items" << endl;
+    for (int i = 0; i < items_count; i++)
+    {
+        cout << items[orders[proceed].list[i]].name << " - " << items[orders[proceed].list[i]].price << endl;
+    }
+
+    cout << "-----------------------------------------" << endl;
+
+    cout << "Total Price: " << total << endl;
+
+    orders[proceed].total_sale_price = total;
+    orders[proceed].total_cost_price = total_cost;
+
+    cout << "-----------------------------------------" << endl;
 }
 
 void set_table()
@@ -267,6 +309,7 @@ void set_table()
             found = true;
             cout << "Table Booked Successfully!" << endl;
             cout << "Table Number: " << tables[i].id << endl;
+            tables[i].status = "Booked";
             display_menu();
         }
     }
@@ -277,7 +320,4 @@ void set_table()
         cout << "Please try again later." << endl;
         main();
     }
-}
-void take_away(){
-    
 }

@@ -41,6 +41,10 @@ public:
 
     Order()
     {
+        for (int i = 0; i < 100; i++)
+        {
+            list[i] = -1;
+        }
         total_sale_price = 0.0;
         total_cost_price = 0.0;
         customer_username = "Guest";

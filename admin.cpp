@@ -406,6 +406,7 @@ void view_orders()
         {
             continue;
         }
+        cout << "------------------------------------------" << endl;
         cout << "Order ID: " << i << endl;
         cout << "Customer Name: " << orders[i].customer_username << endl;
         cout << "Total Sale Price: " << orders[i].total_sale_price << endl;
@@ -414,21 +415,17 @@ void view_orders()
         cout << "Order Status: " << orders[i].order_status << endl;
         cout << "Order Type: " << orders[i].order_type << endl;
         cout << "Order Date: " << orders[i].order_date << endl;
+        cout << "Address : " << orders[i].customer_address << endl;
         cout << "Items in Order : " << endl;
         for (int j = 0; j < 100; j++)
         {
-            if (orders[i].list[0] == 0)
+            if (orders[i].list[j] == -1)
             {
-                cout << j + 1 << "  " << items[orders[i].list[0]].name << endl;
-                if (orders[i].list[j + 1] == 0)
-                {
-                    break;
-                }
-                cout << j + 1 << "  " << items[orders[i].list[j]].name << endl;
+                continue;
             }
+            cout << items[orders[i].list[j]].name << endl;
         }
         cout << endl;
-        cout << "Address : " << orders[i].customer_address << endl;
     }
     save_changes();
 }
