@@ -46,6 +46,10 @@ public:
         total_sale_price = 0.0;
         total_cost_price = 0.0;
         customer_username = "Guest";
+        customer_address = "Guest";
+        customer_phone = "Guest";
+        customer_email = "Guest";
+        order_date = "Nill";
         order_status = "Nill";
         order_type = "Unknown";
     }
@@ -122,23 +126,6 @@ public:
 };
 int Table::capacity = 0;
 
-class Address
-{
-public:
-    string house_no;
-    string street;
-    string city;
-    string country;
-
-    Address()
-    {
-        house_no = "Unknown";
-        street = "Unknown";
-        city = "Unknown";
-        country = "Unknown";
-    }
-};
-
 class Discounts
 {
 public:
@@ -174,7 +161,6 @@ Item items[100];
 Order orders[100];
 User users[100];
 Staff staffs[100];
-Address addresses[100];
 Customer customers[100];
 Table tables[100];
 Discounts discounts[100];
