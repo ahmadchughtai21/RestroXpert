@@ -16,7 +16,7 @@ int main();
 void delivery();
 void sign_up();
 void sign_in();
-void dining();
+void dine_in();
 void display_menu();
 
 void order()
@@ -38,7 +38,7 @@ order:
         delivery();
         break;
     case 2:
-        dining();
+        dine_in();
         break;
     case 0:
         cout << "Exiting Order Panel..." << endl;
