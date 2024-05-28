@@ -49,31 +49,40 @@ order:
 
 void delivery()
 {
-    display_menu();
-    for (int i = 0; i <= count; i++)
+    cout << "Welcome to the Delivery Panel" << endl;
+    cout << "Sign Up or Sign In" << endl;
+    cout << "1 -> Sign Up" << endl;
+    cout << "2 -> Sign In" << endl;
+
+    int choice;
+    cout << "Enter Your Choice : ";
+    cin >> choice;
+
+    switch (choice)
     {
-        cout << "Enter your Address .... " << endl;
-        cout << "House No : ";
-        cin.ignore();
-        getline(cin, addresses[i].house_no);
-        cout << "Street : ";
-        getline(cin, addresses[i].street);
-        cout << "City : ";
-        getline(cin, addresses[i].city);
-        cout << "Country : ";
-        getline(cin, addresses[i].country);
+    case 1:
+        cout << "Sign Up" << endl;
+        sign_up();
+        sign_in();
+        break;
+    case 2:
+        cout << "Sign In" << endl;
+        sign_in();
+        display_menu();
+        break;
+
+    default:
+        cout << "Invalid choice! Please try again." << endl;
+        delivery();
     }
-    print_bill();
-    count++;
 }
 
 void sign_up()
 {
 
-    cout << "Enter your username: ";
+    cout << "Setup your username: ";
     string username;
-    cin.ignore();
-    getline(cin, username);
+    cin >> username;
 
     for (int i = 0; i < 100; i++)
     {
@@ -167,48 +176,38 @@ void sign_in()
             found = true;
             break;
         }
-        cout << "User not found! Please try again." << endl;
-        sign_in();
-
-        if (found)
-        {
-            for (int i = 0; i < index; i++)
-            {
-                cout << "Enter your password: ";
-                string password;
-                cin >> password;
-
-                if (customers[index].password == password)
-                {
-                    cout << "Sign In Successful!" << endl;
-                    break;
-                }
-                else
-                {
-                    cout << "Incorrect password! Please try again." << endl;
-                }
-            }
-
-            break;
-        }
     }
 
-    cout << "Enter your password: ";
-    string password;
-    cin >> password;
+    if (!found)
+    {
+        cout << "User not found! Please try again." << endl;
+        sign_in();
+    }
+    else
+    {
+        cout << "Enter your password: ";
+        string password;
+        cin.ignore();
+        getline(cin, password);
 
-    // Check if the username and password are correct
-    // If correct, show the menu
-    // If incorrect, show an error message and ask to try again
+        if (customers[index].password == password)
+        {
+            cout << "Sign In Successful!" << endl;
+            display_menu();
+        }
+        else
+        {
+            cout << "Incorrect Password! Please try again." << endl;
+            sign_in();
+        }
+    }
 }
-
 void dining()
 {
     cout << "Welcome to the Dine In Panel" << endl;
     sitting();
     display_menu();
     print_bill();
-    
 }
 
 void display_menu()
@@ -245,12 +244,12 @@ void display_menu()
         cout << items[list[j] - 1].name << " ---------------------------- " << items[list[j] - 1].price << " Rs" << endl;
     }
 
-    
     for (int j = 0; j < i; j++) // calculate the total bill
     {
         total = total + items[list[j] - 1].price;
     }
-   
+
+    print_bill();
 }
 
 void print_bill()
@@ -277,23 +276,22 @@ void print_bill()
     cout << "----------------" << endl;
 }
 void sitting()
-{   
+{
     int a;
     Table::capacity = 50;
     for (int i = 0; i <= count; i++)
     {
-        cout << "welcome .... "<<endl;
+        cout << "welcome .... " << endl;
         cout << "Enter the number of people : ";
         cin >> a;
         if (Table::capacity - a >= 0)
         {
-            cout << "Seats are available "<< endl;
+            cout << "Seats are available " << endl;
         }
         else
         {
-            cout << "Seats not available"<< endl;
+            cout << "Seats not available" << endl;
         }
     }
-    tables->capacity=tables->capacity-a;
+    tables->capacity = tables->capacity - a;
 }
-
