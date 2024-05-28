@@ -235,6 +235,8 @@ void dine_in()
     proceed = index;
     orders[index].order_type = "Dine In";
     orders[index].order_status = "Pending";
+    GetLocalTime(&o);
+    orders[index].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
     set_table();
 }
 
@@ -249,38 +251,38 @@ void display_menu()
         {
             continue;
         }
-        cout << " " << i + 1 << " -> " << items[i].name << " ----------------------------- "
+        cout << " " << i << " -> " << items[i].name << " ----------------------------- "
              << "Price = " << items[i].price << " Rs" << endl;
     }
 
     cout << "Enter the item number you want to order (0 to exit): ";
 
-    int i = 0;
-    while (true)
+    cout << "How many items do you want to order? ";
+    int numItems;
+    cin >> numItems;
+
+    cout << "Enter the item numbers you want to order: ";
+
+    for (int i = 0; i < numItems; i++)
     {
         cin >> orders[proceed].list[i];
-        if (orders[proceed].list[i] == 0)
-        {
-            break;
-        }
-        i++;
     }
 
-    for (int j = 0; j < i; j++) // decrease quantity of ordered items by 1
+    for (int j = 0; j < numItems; j++) // decrease quantity of ordered items by 1
     {
-        items[orders[proceed].list[j] - 1].quantity--;
+        items[orders[proceed].list[j]].quantity--;
     }
 
     cout << "You have selected the following items: " << endl;
-    for (int j = 0; j < i; j++) // shows the all seletected items
+    for (int j = 0; j < numItems; j++) // shows the all seletected items
     {
-        cout << items[orders[proceed].list[j] - 1].name << " ---------------------------- " << items[orders[proceed].list[j] - 1].price << " Rs" << endl;
+        cout << items[orders[proceed].list[j]].name << " ---------------------------- " << items[orders[proceed].list[j]].price << " Rs" << endl;
     }
 
-    for (int j = 0; j < i; j++) // calculate the total bill
+    for (int j = 0; j < numItems; j++) // calculate the total bill
     {
-        total = total + items[orders[proceed].list[j] - 1].price;
-        total_cost = total_cost + items[orders[proceed].list[j] - 1].o_price;
+        total = total + items[orders[proceed].list[j]].price;
+        total_cost = total_cost + items[orders[proceed].list[j]].o_price;
     }
 
     orders[proceed].total_sale_price = total;
@@ -291,9 +293,9 @@ void display_menu()
     cout << " --------------------------- BILL ---------------------------- " << endl;
     cout << "Items: " << endl;
 
-    for (int j = 0; j < i; j++)
+    for (int j = 0; j < numItems; j++)
     {
-        cout << items[orders[proceed].list[j] - 1].name << " - " << items[orders[proceed].list[j] - 1].price << " Rs" << endl;
+        cout << items[orders[proceed].list[j]].name << " - " << items[orders[proceed].list[j]].price << " Rs" << endl;
     }
 
     cout << " ---------------------------------------------Total: " << fixed << setprecision(2) << total << " Rs " << endl;

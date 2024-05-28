@@ -417,13 +417,10 @@ void view_orders()
         cout << "Items in Order : " << endl;
         for (int j = 0; j < 100; j++)
         {
-            if (orders[i].list[j] == 0)
-            {
-                continue;
-            }
-            cout << j + 1 << "  " << items[orders[i].list[j - 1]].name << endl;
+            cout << j + 1 << "  " << items[orders[i].list[j]].name << endl;
         }
         cout << endl;
+        cout << "Address : " << orders[i].customer_address << endl;
     }
     save_changes();
 }
