@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int total = 0;
+static int total = 0;
 
 int main();
 void delivery();
@@ -15,6 +15,10 @@ void dining();
 void display_menu();
 void print_bill();
 void sitting();
+void take_away();
+void payment_process();
+void preperation_time();
+
 
 void order()
 {
@@ -23,6 +27,7 @@ order:
     cout << "Welcome To the Order Panel" << endl;
     cout << "1 -> Home Delivery" << endl;
     cout << "2 -> Dine In" << endl;
+    cout << "3 -> Take Away "<<endl;
     cout << "0 -> Exit" << endl;
 
     cout << "Enter Your Choice : ";
@@ -37,6 +42,8 @@ order:
     case 2:
         dining();
         break;
+    case 3:
+        take_away();    
     case 0:
         cout << "Exiting Order Panel..." << endl;
         main();
@@ -63,7 +70,9 @@ void delivery()
         cout << "Country : ";
         getline(cin, addresses[i].country);
     }
+    payment_process();
     print_bill();
+    preperation_time();
     count++;
 }
 
@@ -207,7 +216,9 @@ void dining()
     cout << "Welcome to the Dine In Panel" << endl;
     sitting();
     display_menu();
+    payment_process();
     print_bill();
+    preperation_time();
     
 }
 
@@ -296,4 +307,44 @@ void sitting()
     }
     tables->capacity=tables->capacity-a;
 }
+void take_away(){
+
+    display_menu();
+    print_bill();
+    payment_process();
+    preperation_time();
+
+}
+void payment_process(){
+    
+    payment_process :
+
+    int a;
+    float gst;
+     cout << "Confirm the Payment Method"<< endl;
+     cout << "For Cash Press 1 .... "<< endl<< "For Credit / Debit Card Press 2 .... "<< endl;
+     cin >> a;
+     switch (a){
+     case 1:
+        gst=(total*0.18)/100;
+        total=total+gst;
+        break;
+     
+     case 2:
+        gst=(total*0.16)/100;
+        total=total+gst;
+        break;
+     
+     default :
+        cout << "Invalid choice! Please try again."<< endl;
+        goto payment_process;
+     }
+} 
+    
+void preperation_time(){
+
+     cout  << "The Order Will be Ready in 30 Minutes ";
+
+}
+
 
