@@ -18,8 +18,6 @@ void sign_up();
 void sign_in();
 void dining();
 void display_menu();
-void print_bill();
-void sitting();
 
 void order()
 {
@@ -222,9 +220,8 @@ void sign_in()
 void dining()
 {
     cout << "Welcome to the Dine In Panel" << endl;
-    sitting();
+    // sitting();
     display_menu();
-    print_bill();
 }
 
 void display_menu()
@@ -270,49 +267,37 @@ void display_menu()
     orders[proceed].total_sale_price = total;
     orders[proceed].total_cost_price = total_cost;
 
-    print_bill();
-}
+    cout << "Order Placed Successfully!" << endl;
 
-void print_bill()
-{
-    int list[100];
-    int i = 0;
-    cout << "----- Bill -----" << endl;
+    cout << " --------------------------- BILL ---------------------------- " << endl;
+    cout << "Items: " << endl;
 
-    cout << "Delivery Address: " << endl;
-    for (int i = 0; i <= count; i++)
+    for (int j = 0; j < i; j++)
     {
-        cout << addresses[count].house_no << ", " << addresses[count].street << ", " << addresses[count].city << ", " << addresses[count].country << endl;
+        cout << items[list[j] - 1].name << " - " << items[list[j] - 1].price << " Rs" << endl;
     }
 
-    cout << "----- Bill -----" << endl;
-
-    for (int i = 0; i <= count; i++)
-    {
-        cout << items[list[count]].name << " - " << items[list[count]].price << endl;
-        total = total + items[list[count]].price;
-    }
-
-    cout << "Total: $" << fixed << setprecision(2) << total << endl;
-    cout << "----------------" << endl;
+    cout << " ---------------------------------------------Total: " << fixed << setprecision(2) << total << " Rs " << endl;
+    cout << "-------------------------------------------------------------- " << endl;
 }
-void sitting()
-{
-    int a;
-    Table::capacity = 50;
-    for (int i = 0; i <= count; i++)
-    {
-        cout << "welcome .... " << endl;
-        cout << "Enter the number of people : ";
-        cin >> a;
-        if (Table::capacity - a >= 0)
-        {
-            cout << "Seats are available " << endl;
-        }
-        else
-        {
-            cout << "Seats not available" << endl;
-        }
-    }
-    tables->capacity = tables->capacity - a;
-}
+
+// void sitting()
+// {
+//     int a;
+//     Table::capacity = 50;
+//     for (int i = 0; i <= count; i++)
+//     {
+//         cout << "welcome .... " << endl;
+//         cout << "Enter the number of people : ";
+//         cin >> a;
+//         if (Table::capacity - a >= 0)
+//         {
+//             cout << "Seats are available " << endl;
+//         }
+//         else
+//         {
+//             cout << "Seats not available" << endl;
+//         }
+//     }
+//     tables->capacity = tables->capacity - a;
+// }
