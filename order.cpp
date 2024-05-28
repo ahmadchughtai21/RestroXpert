@@ -254,7 +254,6 @@ void display_menu()
 void print_bill()
 {
     int list[100];
-    double total = 0;
     int i = 0;
     cout << "----- Bill -----" << endl;
 
