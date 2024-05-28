@@ -18,6 +18,7 @@ void sign_up();
 void sign_in();
 void dine_in();
 void display_menu();
+void set_table();
 
 void order()
 {
@@ -234,7 +235,7 @@ void dine_in()
     proceed = index;
     orders[index].order_type = "Dine In";
     orders[index].order_status = "Pending";
-    display_menu();
+    set_table();
 }
 
 void display_menu()
@@ -299,23 +300,28 @@ void display_menu()
     cout << "-------------------------------------------------------------- " << endl;
 }
 
-// void sitting()
-// {
-//     int a;
-//     Table::capacity = 50;
-//     for (int i = 0; i <= count; i++)
-//     {
-//         cout << "welcome .... " << endl;
-//         cout << "Enter the number of people : ";
-//         cin >> a;
-//         if (Table::capacity - a >= 0)
-//         {
-//             cout << "Seats are available " << endl;
-//         }
-//         else
-//         {
-//             cout << "Seats not available" << endl;
-//         }
-//     }
-//     tables->capacity = tables->capacity - a;
-// }
+void set_table()
+{
+    cout << "How many seats do you want to book?" << endl;
+    int seats;
+    cin >> seats;
+
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (tables[i].capacity >= seats)
+        {
+            found = true;
+            cout << "Table Booked Successfully!" << endl;
+            cout << "Table Number: " << tables[i].id << endl;
+            display_menu();
+        }
+    }
+
+    if (!found)
+    {
+        cout << "Sorry, no table available for your required capacity." << endl;
+        cout << "Please try again later." << endl;
+        main();
+    }
+}

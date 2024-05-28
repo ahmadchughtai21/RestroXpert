@@ -113,18 +113,17 @@ public:
 class Table
 {
 public:
-    static int capacity;
+    int id;
+    int capacity;
     string status;
-    string reserved_by;
 
     Table()
     {
+        id = 0;
         capacity = 0;
-        status = "unknown";
-        reserved_by = "Unknown";
+        status = "Unknown";
     }
 };
-int Table::capacity = 0;
 
 class Discounts
 {

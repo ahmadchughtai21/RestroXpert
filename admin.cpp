@@ -638,7 +638,7 @@ void view_tables()
         {
             continue;
         }
-        cout << "Table No: " << i << endl;
+        cout << "Table No: " << tables[i].id << endl;
         cout << "Table Capacity: " << tables[i].capacity << endl;
         cout << "Table Status: " << tables[i].status << endl;
         cout << endl;
@@ -667,6 +667,7 @@ add_table:
     cout << "Enter Table Capacity: ";
     int capacity;
     cin >> capacity;
+    tables[index].id = index;
     tables[index].capacity = capacity;
     tables[index].status = "Available";
 
@@ -688,6 +689,7 @@ void edit_table()
     }
 
     cout << "Table Details:" << endl;
+    cout << "Table No: " << tables[id].id << endl;
     cout << "Table Capacity: " << tables[id].capacity << endl;
     cout << "Table Status: " << tables[id].status << endl;
 
@@ -718,9 +720,19 @@ void delete_table()
         cout << "Table not found. Please try again." << endl;
         return;
     }
-
-    tables[id].capacity = 0;
-    tables[id].status = "Unknown";
+    int t = -1;
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (tables[i].id == id)
+        {
+            t = i;
+            found = true;
+            break;
+        }
+    }
+    tables[t].capacity = 0;
+    tables[t].status = "Unknown";
 
     cout << "Table Deleted Successfully!" << endl;
     save_changes();
