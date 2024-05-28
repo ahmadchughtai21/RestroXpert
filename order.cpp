@@ -278,3 +278,6 @@ void set_table()
         main();
     }
 }
+void take_away(){
+    
+}
