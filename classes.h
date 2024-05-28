@@ -108,17 +108,17 @@ public:
 class Table
 {
 public:
-    int capacity;
+    static int capacity;
     string status;
     string reserved_by;
 
     Table()
     {
         capacity = 0;
-        status = "Unknown";
+        status =  "unknown";
         reserved_by = "Unknown";
     }
-};
+}; int Table::capacity = 0;
 
 class Address
 {

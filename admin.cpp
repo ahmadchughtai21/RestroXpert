@@ -56,6 +56,7 @@ void view_feedbacks();
 void reset_to_default();
 void save_changes();
 void load_changes();
+void update_table();
 
 void admin()
 {
@@ -194,6 +195,7 @@ void inventory_management()
         }
     }
 }
+
 
 void view_inventory()
 {
@@ -571,6 +573,9 @@ void table_management()
     cout << " 2 -> Add Table" << endl;
     cout << " 3 -> Edit Table" << endl;
     cout << " 4 -> Delete Table" << endl;
+    cout << " 5 -> Update Table" << endl;
+    
+
     cout << " 0 -> Exit" << endl;
 
     int choice;
@@ -592,6 +597,9 @@ void table_management()
     case 4:
         delete_table();
         break;
+     case 5 :
+        update_table();
+        break;    
     case 0:
         return;
     default:
@@ -599,6 +607,18 @@ void table_management()
         break;
     }
     save_changes();
+}
+
+void update_table(){
+
+    int a;
+    cout << "current table in system : ";
+    cout << tables->capacity << endl;
+    cout << "Amount of Table to be Added : ";
+    cin >> a;
+    tables->capacity=tables->capacity+a;
+    cout << "Now total table Available : "<< tables->capacity<< endl;
+
 }
 
 void view_tables()

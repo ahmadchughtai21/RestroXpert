@@ -205,8 +205,10 @@ void sign_in()
 void dining()
 {
     cout << "Welcome to the Dine In Panel" << endl;
-    display_menu();
     sitting();
+    display_menu();
+    print_bill();
+    
 }
 
 void display_menu()
@@ -275,5 +277,23 @@ void print_bill()
     cout << "----------------" << endl;
 }
 void sitting()
-{
+{   
+    int a;
+    Table::capacity = 50;
+    for (int i = 0; i <= count; i++)
+    {
+        cout << "welcome .... "<<endl;
+        cout << "Enter the number of people : ";
+        cin >> a;
+        if (Table::capacity - a >= 0)
+        {
+            cout << "Seats are available "<< endl;
+        }
+        else
+        {
+            cout << "Seats not available"<< endl;
+        }
+    }
+    tables->capacity=tables->capacity-a;
 }
+
