@@ -265,6 +265,11 @@ void display_menu()
         i++;
     }
 
+    for (int j = 0; j < i; j++) // decrease quantity of ordered items by 1
+    {
+        items[orders[proceed].list[j] - 1].quantity--;
+    }
+
     cout << "You have selected the following items: " << endl;
     for (int j = 0; j < i; j++) // shows the all seletected items
     {

@@ -414,14 +414,14 @@ void view_orders()
         cout << "Order Status: " << orders[i].order_status << endl;
         cout << "Order Type: " << orders[i].order_type << endl;
         cout << "Order Date: " << orders[i].order_date << endl;
-        cout << "Items in Order : ";
+        cout << "Items in Order : " << endl;
         for (int j = 0; j < 100; j++)
         {
             if (orders[i].list[j] == 0)
             {
                 continue;
             }
-            cout << j << "  " << items[orders[i].list[j]].name << endl;
+            cout << j + 1 << "  " << items[orders[i].list[j]].name << endl;
         }
         cout << endl;
     }
