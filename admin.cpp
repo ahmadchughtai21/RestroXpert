@@ -10,8 +10,8 @@
 
 // Global Variables for Counter
 // int item_id;
-double total_sales;
-double total_profit;
+double total_sales_final;
+double total_cost_final;
 // int table_id;
 // int user_id;
 // int discount_id;
@@ -195,7 +195,6 @@ void inventory_management()
         }
     }
 }
-
 
 void view_inventory()
 {
@@ -524,7 +523,7 @@ void generate_financial_report()
         {
             continue;
         }
-        total_sales = total_sales + orders[i].total_sale_price;
+        total_sales_final = total_sales_final + orders[i].total_sale_price;
     }
     for (int i = 0; i < 100; i++)
     {
@@ -532,14 +531,14 @@ void generate_financial_report()
         {
             continue;
         }
-        total_profit = total_profit + (orders[i].total_sale_price - orders[i].total_cost_price);
+        total_cost_final = total_cost_final + orders[i].total_cost_price;
     }
 
     SYSTEMTIME t;
     GetLocalTime(&t);
     cout << "Financial Report as of " << t.wDay << "/" << t.wMonth << "/" << t.wYear << endl;
-    cout << "Total Sales: " << total_sales << endl;
-    cout << "Total Profit: " << total_profit << endl;
+    cout << "Total Sales: " << total_sales_final << endl;
+    cout << "Total Cost: " << total_cost_final << endl;
     cout << "Financial Report Generated Successfully!" << endl;
     save_changes();
 }
@@ -574,7 +573,6 @@ void table_management()
     cout << " 3 -> Edit Table" << endl;
     cout << " 4 -> Delete Table" << endl;
     cout << " 5 -> Update Table" << endl;
-    
 
     cout << " 0 -> Exit" << endl;
 
@@ -597,9 +595,9 @@ void table_management()
     case 4:
         delete_table();
         break;
-     case 5 :
+    case 5:
         update_table();
-        break;    
+        break;
     case 0:
         return;
     default:
@@ -609,16 +607,16 @@ void table_management()
     save_changes();
 }
 
-void update_table(){
+void update_table()
+{
 
     int a;
     cout << "current table in system : ";
     cout << tables->capacity << endl;
     cout << "Amount of Table to be Added : ";
     cin >> a;
-    tables->capacity=tables->capacity+a;
-    cout << "Now total table Available : "<< tables->capacity<< endl;
-
+    tables->capacity = tables->capacity + a;
+    cout << "Now total table Available : " << tables->capacity << endl;
 }
 
 void view_tables()
@@ -1253,10 +1251,6 @@ void save_changes()
 {
     ofstream fout;
     fout.open("database.txt");
-    fout << total_sales;
-    fout << endl;
-    fout << total_profit;
-    fout << endl;
     fout << password;
     fout << endl;
 
@@ -1288,9 +1282,6 @@ void load_changes()
 {
     ifstream fin;
     fin.open("database.txt");
-    fin >> total_sales;
-    fin >> total_profit;
-
     fin >> password;
 
     for (int i = 0; i < 100; i++)

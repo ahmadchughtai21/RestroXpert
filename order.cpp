@@ -264,10 +264,11 @@ void display_menu()
     for (int j = 0; j < i; j++) // calculate the total bill
     {
         total = total + items[list[j] - 1].price;
+        total_cost = total_cost + items[list[j] - 1].o_price;
     }
 
     orders[proceed].total_sale_price = total;
-    orders[proceed].total_cost_price = total;
+    orders[proceed].total_cost_price = total_cost;
 
     print_bill();
 }
