@@ -233,6 +233,7 @@ void dine_in()
     }
     proceed = index;
     orders[index].order_type = "Dine In";
+    orders[index].order_status = "Pending";
     display_menu();
 }
 
