@@ -81,13 +81,13 @@ void display_menu()
     }
 
     cout << "You have selected the following items: " << endl;
-    for (int j = 0; j < i; j++)
+    for (int j = 0; j < i; j++) // shows the all seletected items
     {
         cout << items[list[j] - 1].name << " ---------------------------- " << items[list[j] - 1].price << " Rs" << endl;
     }
 
     int total = 0;
-    for (int j = 0; j < i; j++)
+    for (int j = 0; j < i; j++) // calculate the total bill
     {
         total = total + items[list[j] - 1].price;
     }
