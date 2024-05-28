@@ -255,8 +255,6 @@ void display_menu()
              << "Price = " << items[i].price << " Rs" << endl;
     }
 
-    cout << "Enter the item number you want to order (0 to exit): ";
-
     cout << "How many items do you want to order? ";
     int numItems;
     cin >> numItems;

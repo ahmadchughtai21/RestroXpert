@@ -7,8 +7,6 @@
 
 using namespace std;
 
-static int count;
-
 class Item
 {
 public:
