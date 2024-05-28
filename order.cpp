@@ -217,10 +217,22 @@ void sign_in()
         }
     }
 }
-void dining()
+void dine_in()
 {
     cout << "Welcome to the Dine In Panel" << endl;
-    // sitting();
+    int index = -1;
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (customers[i].name == "Unknown")
+        {
+            index = i;
+            found = true;
+            break;
+        }
+    }
+    proceed = index;
+    orders[index].order_type = "Dine In";
     display_menu();
 }
 
