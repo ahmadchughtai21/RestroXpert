@@ -413,6 +413,16 @@ void view_orders()
         cout << "Total Profit: " << orders[i].total_sale_price - orders[i].total_cost_price << endl;
         cout << "Order Status: " << orders[i].order_status << endl;
         cout << "Order Type: " << orders[i].order_type << endl;
+        cout << "Order Date: " << orders[i].order_date << endl;
+        cout << "Items in Order : ";
+        for (int j = 0; j < 100; j++)
+        {
+            if (orders[i].list[j] == 0)
+            {
+                continue;
+            }
+            cout << j << "  " << items[orders[i].list[j]].name << endl;
+        }
         cout << endl;
     }
     save_changes();
