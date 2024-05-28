@@ -10,9 +10,11 @@
 
 // Global Variables for Counter
 // int item_id;
-int table_id;
-int user_id;
-int discount_id;
+double total_sales;
+double total_profit;
+// int table_id;
+// int user_id;
+// int discount_id;
 string password = "";
 
 // Prototypes of used functions
@@ -503,12 +505,10 @@ void reports()
 
 void generate_financial_report()
 {
-    double total_sales = 0.0;
-    double total_profit = 0.0;
 
     for (int i = 0; i < 100; i++)
     {
-        if (orders[i].order_status == "Nill" || orders[i].order_status == "Cancelled")
+        if (orders[i].order_status != "Completed")
         {
             continue;
         }
@@ -516,7 +516,7 @@ void generate_financial_report()
     }
     for (int i = 0; i < 100; i++)
     {
-        if (orders[i].order_status == "Nill" || orders[i].order_status == "Cancelled")
+        if (orders[i].order_status != "Completed")
         {
             continue;
         }
@@ -612,14 +612,25 @@ void view_tables()
 void add_table()
 {
     cout << "You are adding a Table" << endl;
-    table_id++;
+    // table_id++;
+    int index = -1;
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (tables[i].status == "Unknown")
+        {
+            index = i;
+            found = true;
+            break;
+        }
+    }
 add_table:
 
     cout << "Enter Table Capacity: ";
     int capacity;
     cin >> capacity;
-    tables[table_id].capacity = capacity;
-    tables[table_id].status = "Available";
+    tables[index].capacity = capacity;
+    tables[index].status = "Available";
 
     cout << "Table Added Successfully!" << endl;
     save_changes();
@@ -773,49 +784,60 @@ void get_staff_details()
 void add_staff()
 {
     cout << "You are adding a Staff Member" << endl;
-    user_id++;
+    // user_id++;
+    int index = -1;
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (staffs[i].name == "Unknown")
+        {
+            index = i;
+            found = true;
+            break;
+        }
+    }
 add_staff:
 
     cout << "Enter Staff Name: ";
     cin.ignore();
     string name;
     getline(cin, name);
-    staffs[user_id].name = name;
+    staffs[index].name = name;
     cout << "Enter Staff CNIC: ";
     string cnic;
     cin >> cnic;
-    staffs[user_id].cnic = cnic;
+    staffs[index].cnic = cnic;
     cout << "Enter Staff Phone: ";
     string phone;
     cin >> phone;
-    staffs[user_id].phone = phone;
+    staffs[index].phone = phone;
     cout << "Enter Staff Email: ";
     string email;
     cin >> email;
-    staffs[user_id].email = email;
+    staffs[index].email = email;
     cout << "Enter Staff Address: ";
     string address;
     cin.ignore();
     getline(cin, address);
-    staffs[user_id].address = address;
+    staffs[index].address = address;
     cout << "Enter Staff Role: ";
     string role;
     cin >> role;
-    staffs[user_id].role = role;
+    staffs[index].role = role;
     cout << "Enter Staff Status: ";
     string status;
     cin >> status;
-    staffs[user_id].status = status;
+    staffs[index].status = status;
 
     cout << "Staff Member Added Successfully!" << endl;
     cout << "New Details:" << endl;
-    cout << "Name: " << staffs[user_id].name << endl;
-    cout << "CNIC: " << staffs[user_id].cnic << endl;
-    cout << "Phone: " << staffs[user_id].phone << endl;
-    cout << "Email: " << staffs[user_id].email << endl;
-    cout << "Address: " << staffs[user_id].address << endl;
-    cout << "Role: " << staffs[user_id].role << endl;
-    cout << "Status: " << staffs[user_id].status << endl;
+    cout << "Name: " << staffs[index].name << endl;
+    cout << "CNIC: " << staffs[index].cnic << endl;
+    cout << "Phone: " << staffs[index].phone << endl;
+    cout << "Email: " << staffs[index].email << endl;
+    cout << "Address: " << staffs[index].address << endl;
+    cout << "Role: " << staffs[index].role << endl;
+    cout << "Status: " << staffs[index].status << endl;
 
     save_changes();
 }
@@ -986,19 +1008,30 @@ void add_discount()
 {
 
     cout << "You are adding a Discount" << endl;
-    discount_id++;
+    // discount_id++;
+    int index = -1;
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (discounts[i].name == "Unknown")
+        {
+            index = i;
+            found = true;
+            break;
+        }
+    }
 add_discount:
 
     cout << "Enter Discount Name: ";
     cin.ignore();
     string name;
     getline(cin, name);
-    discounts[discount_id].name = name;
+    discounts[index].name = name;
     cout << "Enter Discount Percentage: ";
     double discount;
     cin >> discount;
-    discounts[discount_id].discount = discount;
-    discount_id++;
+    discounts[index].discount = discount;
+    // discount_id++;
     cout << "Discount Added Successfully!" << endl;
     save_changes();
 }
@@ -1157,15 +1190,20 @@ void view_feedbacks()
 void reset_to_default()
 {
     // item_id = 0;
-    table_id = 0;
-    user_id = 0;
-    discount_id = 0;
+    double total_sales = 0.0;
+    double total_profit = 0.0;
+    // table_id = 0;
+    // user_id = 0;
+    // discount_id = 0;
     password = "";
+
     for (int i = 0; i < 100; i++)
     {
         items[i].name = "Unknown";
+        items[i].o_price = 0.0;
+        items[i].price = 0.0;
+        items[i].quantity = 0;
     }
-
     save_changes();
 }
 void changes_view()
@@ -1173,9 +1211,9 @@ void changes_view()
 
     cout << "Showing Database Tables ( Maintainance Mode !!! )" << endl;
     // cout << "Item ID: " << item_id << endl;
-    cout << "Table ID: " << table_id << endl;
-    cout << "User ID: " << user_id << endl;
-    cout << "Discount ID: " << discount_id << endl;
+    // cout << "Table ID: " << table_id << endl;
+    // cout << "User ID: " << user_id << endl;
+    // cout << "Discount ID: " << discount_id << endl;
     cout << "Password: " << password << endl;
 }
 
@@ -1187,12 +1225,16 @@ void save_changes()
     fout.open("database.txt");
     // fout << item_id;
     // fout << endl;
-    fout << table_id;
+    fout << total_sales;
     fout << endl;
-    fout << user_id;
+    fout << total_profit;
     fout << endl;
-    fout << discount_id;
-    fout << endl;
+    // fout << table_id;
+    // fout << endl;
+    // fout << user_id;
+    // fout << endl;
+    // fout << discount_id;
+    // fout << endl;
     fout << password;
     fout << endl;
 
@@ -1203,7 +1245,17 @@ void save_changes()
     }
     for (int i = 0; i < 100; i++)
     {
+        fout << items[i].o_price;
+        fout << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
         fout << items[i].price;
+        fout << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fout << items[i].quantity;
         fout << endl;
     }
 
@@ -1215,19 +1267,24 @@ void load_changes()
     ifstream fin;
     fin.open("database.txt");
     // fin >> item_id;
-    fin >> table_id;
-    fin >> user_id;
-    fin >> discount_id;
+    fin >> total_sales;
+    fin >> total_profit;
+    // fin >> table_id;
+    // fin >> user_id;
+    // fin >> discount_id;
     fin >> password;
 
     for (int i = 0; i < 100; i++)
     {
         getline(fin, items[i].name);
     }
-    // for (int i = 0; i < 100; i++)
-    // {
-    //     fin >> items[i].price;
-    // }
+    for (int i = 0; i < 100; i++)
+    {
+        string line;
+        getline(fin, line);
+        stringstream ss(line);
+        ss >> items[i].o_price;
+    }
 
     for (int i = 0; i < 100; i++)
     {
