@@ -1,12 +1,9 @@
 #include "classes.h"
 #include <iostream>
 #include <string>
-// #include <windows.h>
+#include <iomanip>
 
 using namespace std;
-
-// SYSTEMTIME o;
-// GetLocalTime(&o);
 
 int main();
 void delivery();
@@ -14,6 +11,8 @@ void sign_up();
 void sign_in();
 void dining();
 void display_menu();
+void print_bill();
+void sitting();
 
 void order()
 {
@@ -48,35 +47,22 @@ order:
 
 void delivery()
 {
-    cout << "Welcome to the Home Delivery Panel" << endl;
-    cout << "Please Sign Up or Sign in to continue" << endl;
-
-    cout << "1 -> Sign Up" << endl;
-    cout << "2 -> Sign In" << endl;
-    cout << "0 -> Exit" << endl;
-
-    int choice;
-    cout << "Enter Your Choice : ";
-    cin >> choice;
-
-    switch (choice)
+    display_menu();
+    for (int i = 0; i <= count; i++)
     {
-    case 1:
-        cout << "Sign Up" << endl;
-        sign_up();
-        break;
-    case 2:
-        cout << "Sign In" << endl;
-        sign_in();
-        break;
-    case 0:
-        cout << "Exiting Home Delivery Panel..." << endl;
-        order();
-        break;
-    default:
-        cout << "Invalid choice! Please try again." << endl;
-        delivery();
+        cout << "Enter your Address .... " << endl;
+        cout << "House No : ";
+        cin.ignore();
+        getline(cin, addresses[i].house_no);
+        cout << "Street : ";
+        getline(cin, addresses[i].street);
+        cout << "City : ";
+        getline(cin, addresses[i].city);
+        cout << "Country : ";
+        getline(cin, addresses[i].country);
     }
+    print_bill();
+    count++;
 }
 
 void sign_up()
@@ -167,12 +153,10 @@ void sign_in()
 {
     cout << "Enter your username: ";
     string username;
-    cin.ignore();
-    getline(cin, username);
+    cin >> username;
 
-    bool found = false;
     int index = -1;
-
+    bool found = false;
     for (int i = 0; i < 100; i++)
     {
         if (customers[i].username == username)
@@ -181,75 +165,51 @@ void sign_in()
             found = true;
             break;
         }
-    }
-
-    if (!found)
-    {
         cout << "User not found! Please try again." << endl;
         sign_in();
-    }
-    else
-    {
-        cout << "Enter your password: ";
-        string password;
-        cin.ignore();
-        getline(cin, password);
 
-        int index = -1;
-        bool found = false;
-        for (int i = 0; i < 100; i++)
+        if (found)
         {
-            if (customers[i].username == username)
+            for (int i = 0; i < index; i++)
             {
-                index = i;
-                found = true;
-                break;
-            }
-        }
-        if (customers[index].password == password)
-        {
-            cout << "Sign In Successful!" << endl;
-            cout << "Welcome " << customers[index].username << endl;
+                cout << "Enter your password: ";
+                string password;
+                cin >> password;
 
-            int index = -1;
-            bool found = false;
-            for (int i = 0; i < 100; i++)
-            {
-                if (orders[i].order_status == "Nill")
+                if (customers[index].password == password)
                 {
-                    index = i;
-                    found = true;
+                    cout << "Sign In Successful!" << endl;
                     break;
+                }
+                else
+                {
+                    cout << "Incorrect password! Please try again." << endl;
                 }
             }
 
-            // orders[index].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
-            orders[index].customer_name = customers[index].username;
-            orders[index].order_status = "Pending";
-            orders[index].order_type = "Home Delivery";
-            orders[index].customer_phone = customers[index].phone;
-            orders[index].customer_address = customers[index].address;
-
-            display_menu();
-        }
-        else
-        {
-            cout << "Incorrect password! Please try again." << endl;
-            sign_in();
+            break;
         }
     }
+
+    cout << "Enter your password: ";
+    string password;
+    cin >> password;
+
+    // Check if the username and password are correct
+    // If correct, show the menu
+    // If incorrect, show an error message and ask to try again
 }
 
 void dining()
 {
     cout << "Welcome to the Dine In Panel" << endl;
     display_menu();
+    sitting();
 }
 
 void display_menu()
 {
-    cout << "Welcome to the Menu" << endl;
-    cout << "Here is the list of items you can order: " << endl;
+    cout << "-----Menu-----" << endl;
 
     for (int i = 0; i < 10; i++)
     {
@@ -287,4 +247,32 @@ void display_menu()
         total = total + items[list[j] - 1].price;
     }
     cout << "Total Bill: " << total << " Rs" << endl;
+}
+
+void print_bill()
+{
+    int list[100];
+    double total = 0;
+    int i = 0;
+    cout << "----- Bill -----" << endl;
+
+    cout << "Delivery Address: " << endl;
+    for (int i = 0; i <= count; i++)
+    {
+        cout << addresses[count].house_no << ", " << addresses[count].street << ", " << addresses[count].city << ", " << addresses[count].country << endl;
+    }
+
+    cout << "----- Bill -----" << endl;
+
+    for (int i = 0; i <= count; i++)
+    {
+        cout << items[list[count]].name << " - " << items[list[count]].price << endl;
+        total = total + items[list[count]].price;
+    }
+
+    cout << "Total: $" << fixed << setprecision(2) << total << endl;
+    cout << "----------------" << endl;
+}
+void sitting()
+{
 }
