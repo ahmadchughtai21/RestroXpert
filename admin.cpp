@@ -19,6 +19,7 @@ string password = "";
 
 // Prototypes of used functions
 void enter_password();
+void set_password();
 void admin_menu2();
 void inventory_management();
 void view_inventory();
@@ -66,10 +67,7 @@ void enter_password()
 {
     if (password == "")
     {
-        cout << "Please set a password for the Admin Panel: ";
-        cin >> password;
-        cout << "Password set successfully!" << endl;
-        save_changes();
+        set_password();
     }
     cout << "Enter Password to access Admin Panel: ";
     string pass;
@@ -85,6 +83,14 @@ void enter_password()
     }
 }
 
+void set_password()
+{
+    cout << "Please set a New Password for the Admin Panel: ";
+    cin >> password;
+    cout << "Password set successfully!" << endl;
+    save_changes();
+}
+
 void admin_menu2()
 {
     while (true)
@@ -98,7 +104,8 @@ void admin_menu2()
         cout << " 5 -> User Management" << endl;           // completed
         cout << " 6 -> Discount Management" << endl;       // completed
         cout << " 7 -> View Feedbacks" << endl;            // completed
-        cout << " 8 -> Reset to Default Settings" << endl; // completed
+        cout << " 8 -> Change Admin Password" << endl;     // completed
+        cout << " 9 -> Reset to Default Settings" << endl; // completed
         cout << " 0 -> Exit" << endl;
 
         int choice;
@@ -129,7 +136,10 @@ void admin_menu2()
             view_feedbacks();
             break;
         case 8:
+            set_password();
+        case 9:
             reset_to_default();
+            break;
         case 0:
             return;
         default:
@@ -1229,12 +1239,6 @@ void save_changes()
     fout << endl;
     fout << total_profit;
     fout << endl;
-    // fout << table_id;
-    // fout << endl;
-    // fout << user_id;
-    // fout << endl;
-    // fout << discount_id;
-    // fout << endl;
     fout << password;
     fout << endl;
 
