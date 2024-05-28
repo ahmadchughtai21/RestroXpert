@@ -421,7 +421,7 @@ void view_orders()
             {
                 continue;
             }
-            cout << j + 1 << "  " << items[orders[i].list[j]].name << endl;
+            cout << j + 1 << "  " << items[orders[i].list[j - 1]].name << endl;
         }
         cout << endl;
     }
@@ -1272,9 +1272,9 @@ void changes_view()
 void save_changes()
 {
     ofstream fout;
-    fout.open("database.txt");
-    fout << password;
-    fout << endl;
+    fout.open("database/database.txt");
+    // fout << password;
+    // fout << endl;
 
     for (int i = 0; i < 100; i++)
     {
@@ -1297,14 +1297,20 @@ void save_changes()
         fout << endl;
     }
 
+    // saving password
+    ofstream fpass;
+    fpass.open("database/password.txt");
+    fpass << password;
+
+    // closing files
     fout.close();
+    fpass.close();
 }
 
 void load_changes()
 {
     ifstream fin;
-    fin.open("database.txt");
-    fin >> password;
+    fin.open("database/database.txt");
 
     for (int i = 0; i < 100; i++)
     {
@@ -1332,5 +1338,13 @@ void load_changes()
         stringstream ss(line);
         ss >> items[i].quantity;
     }
+
+    // saving password
+    ifstream fpass;
+    fpass.open("database/password.txt");
+    fpass >> password;
+
+    // closing files
     fin.close();
+    fpass.close();
 }

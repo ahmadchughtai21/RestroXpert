@@ -185,7 +185,7 @@ void sign_in()
     if (!found)
     {
         cout << "User not found! Please try again." << endl;
-        sign_in();
+        delivery();
     }
     else
     {
@@ -199,10 +199,10 @@ void sign_in()
             cout << "Sign In Successful!" << endl;
 
             customers[index].order_count++;
-            customers[index].username = orders[index].customer_username;
-            customers[index].address = orders[index].customer_address;
-            customers[index].phone = orders[index].customer_phone;
-            customers[index].email = orders[index].customer_email;
+            orders[index].customer_username = customers[index].username;
+            orders[index].customer_address = customers[index].address;
+            orders[index].customer_phone = customers[index].phone;
+            orders[index].customer_email = customers[index].email;
             orders[index].order_status = "Pending";
             orders[index].order_type = "Home Delivery";
             GetLocalTime(&o);
