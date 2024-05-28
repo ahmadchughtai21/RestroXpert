@@ -7,6 +7,8 @@
 
 using namespace std;
 
+static int count;
+
 class Item
 {
 public:
@@ -167,6 +169,7 @@ Item items[100];
 Order orders[100];
 User users[100];
 Staff staffs[100];
+Address addresses[100];
 Customer customers[100];
 Table tables[100];
 Discounts discounts[100];

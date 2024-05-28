@@ -4,6 +4,14 @@
 admin
 
 
+
+
+
+
+
+
+
+
 Pizza
 Burger
 Biryani
@@ -94,19 +102,8 @@ Unknown
 Unknown
 Unknown
 Unknown
-Unknown
-Unknown
-Unknown
-Unknown
-Unknown
-Unknown
-Unknown
-Unknown
 0
 0
-2000
-400
-300
 0
 0
 0
@@ -115,6 +112,9 @@ Unknown
 0
 0
 0
+2000
+400
+300
 0
 0
 0
