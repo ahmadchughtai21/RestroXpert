@@ -32,7 +32,7 @@ public:
     int id;
     double total_sale_price;
     double total_cost_price;
-    string items[100];
+    int list[100];
     string customer_username;
     string customer_address;
     string customer_phone;

@@ -253,12 +253,12 @@ void display_menu()
     }
 
     cout << "Enter the item number you want to order (0 to exit): ";
-    int list[100];
+
     int i = 0;
     while (true)
     {
-        cin >> list[i];
-        if (list[i] == 0)
+        cin >> orders[proceed].list[i];
+        if (orders[proceed].list[i] == 0)
         {
             break;
         }
@@ -268,13 +268,13 @@ void display_menu()
     cout << "You have selected the following items: " << endl;
     for (int j = 0; j < i; j++) // shows the all seletected items
     {
-        cout << items[list[j] - 1].name << " ---------------------------- " << items[list[j] - 1].price << " Rs" << endl;
+        cout << items[orders[proceed].list[j] - 1].name << " ---------------------------- " << items[orders[proceed].list[j] - 1].price << " Rs" << endl;
     }
 
     for (int j = 0; j < i; j++) // calculate the total bill
     {
-        total = total + items[list[j] - 1].price;
-        total_cost = total_cost + items[list[j] - 1].o_price;
+        total = total + items[orders[proceed].list[j] - 1].price;
+        total_cost = total_cost + items[orders[proceed].list[j] - 1].o_price;
     }
 
     orders[proceed].total_sale_price = total;
@@ -287,7 +287,7 @@ void display_menu()
 
     for (int j = 0; j < i; j++)
     {
-        cout << items[list[j] - 1].name << " - " << items[list[j] - 1].price << " Rs" << endl;
+        cout << items[orders[proceed].list[j] - 1].name << " - " << items[orders[proceed].list[j] - 1].price << " Rs" << endl;
     }
 
     cout << " ---------------------------------------------Total: " << fixed << setprecision(2) << total << " Rs " << endl;
