@@ -14,7 +14,7 @@ void feedback_panel();
 int main()
 {
     load_changes();
-    changes_view(); // mantainance mode
+    // changes_view(); // mantainance mode
 
     int choice;
 
@@ -66,7 +66,7 @@ int main()
             save_changes();
             cout << "Exiting RestroXpert. Goodbye!" << endl;
 
-            changes_view(); // mantainance mode
+            // changes_view(); // mantainance mode
 
             return 0;
         default:

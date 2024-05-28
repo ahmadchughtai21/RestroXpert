@@ -7,8 +7,6 @@
 
 using namespace std;
 
-static int count;
-
 class Item
 {
 public:
@@ -32,19 +30,24 @@ public:
     int id;
     double total_sale_price;
     double total_cost_price;
-    string items[100];
-    string customer_name;
+    int list[100];
+    string customer_username;
     string customer_address;
     string customer_phone;
-    string order_date;
+    string customer_email;
     string order_status;
     string order_type;
+    string order_date;
 
     Order()
     {
         total_sale_price = 0.0;
         total_cost_price = 0.0;
-        customer_name = "Guest";
+        customer_username = "Guest";
+        customer_address = "Guest";
+        customer_phone = "Guest";
+        customer_email = "Guest";
+        order_date = "Nill";
         order_status = "Nill";
         order_type = "Unknown";
     }
@@ -108,32 +111,15 @@ public:
 class Table
 {
 public:
-    static int capacity;
+    int id;
+    int capacity;
     string status;
-    string reserved_by;
 
     Table()
     {
+        id = 0;
         capacity = 0;
-        status =  "unknown";
-        reserved_by = "Unknown";
-    }
-}; int Table::capacity = 0;
-
-class Address
-{
-public:
-    string house_no;
-    string street;
-    string city;
-    string country;
-
-    Address()
-    {
-        house_no = "Unknown";
-        street = "Unknown";
-        city = "Unknown";
-        country = "Unknown";
+        status = "Unknown";
     }
 };
 
@@ -172,7 +158,6 @@ Item items[100];
 Order orders[100];
 User users[100];
 Staff staffs[100];
-Address addresses[100];
 Customer customers[100];
 Table tables[100];
 Discounts discounts[100];

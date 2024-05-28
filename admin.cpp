@@ -10,8 +10,8 @@
 
 // Global Variables for Counter
 // int item_id;
-double total_sales;
-double total_profit;
+double total_sales_final;
+double total_cost_final;
 // int table_id;
 // int user_id;
 // int discount_id;
@@ -195,7 +195,6 @@ void inventory_management()
         }
     }
 }
-
 
 void view_inventory()
 {
@@ -408,13 +407,28 @@ void view_orders()
             continue;
         }
         cout << "Order ID: " << i << endl;
-        cout << "Customer Name: " << orders[i].customer_name << endl;
+        cout << "Customer Name: " << orders[i].customer_username << endl;
         cout << "Total Sale Price: " << orders[i].total_sale_price << endl;
         cout << "Total Cost Price: " << orders[i].total_cost_price << endl;
         cout << "Total Profit: " << orders[i].total_sale_price - orders[i].total_cost_price << endl;
         cout << "Order Status: " << orders[i].order_status << endl;
         cout << "Order Type: " << orders[i].order_type << endl;
+        cout << "Order Date: " << orders[i].order_date << endl;
+        cout << "Items in Order : " << endl;
+        for (int j = 0; j < 100; j++)
+        {
+            if (orders[i].list[0] == 0)
+            {
+                cout << j + 1 << "  " << items[orders[i].list[0]].name << endl;
+                if (orders[i].list[j + 1] == 0)
+                {
+                    break;
+                }
+                cout << j + 1 << "  " << items[orders[i].list[j]].name << endl;
+            }
+        }
         cout << endl;
+        cout << "Address : " << orders[i].customer_address << endl;
     }
     save_changes();
 }
@@ -433,7 +447,7 @@ void edit_order_status()
     }
 
     cout << "Order Details:" << endl;
-    cout << "Customer Name: " << orders[id].customer_name << endl;
+    cout << "Customer Name: " << orders[id].customer_username << endl;
     cout << "Total Sale Price: " << orders[id].total_sale_price << endl;
     cout << "Total Cost Price: " << orders[id].total_cost_price << endl;
     cout << "Total Profit: " << orders[id].total_sale_price - orders[id].total_cost_price << endl;
@@ -477,7 +491,7 @@ void view_cancelled_orders()
             continue;
         }
         cout << "Order ID: " << i << endl;
-        cout << "Customer Name: " << orders[i].customer_name << endl;
+        cout << "Customer Name: " << orders[i].customer_username << endl;
         cout << "Total Sale Price: " << orders[i].total_sale_price << endl;
         cout << "Total Cost Price: " << orders[i].total_cost_price << endl;
         cout << "Total Profit: " << orders[i].total_sale_price - orders[i].total_cost_price << endl;
@@ -524,7 +538,7 @@ void generate_financial_report()
         {
             continue;
         }
-        total_sales = total_sales + orders[i].total_sale_price;
+        total_sales_final = total_sales_final + orders[i].total_sale_price;
     }
     for (int i = 0; i < 100; i++)
     {
@@ -532,14 +546,14 @@ void generate_financial_report()
         {
             continue;
         }
-        total_profit = total_profit + (orders[i].total_sale_price - orders[i].total_cost_price);
+        total_cost_final = total_cost_final + orders[i].total_cost_price;
     }
 
     SYSTEMTIME t;
     GetLocalTime(&t);
     cout << "Financial Report as of " << t.wDay << "/" << t.wMonth << "/" << t.wYear << endl;
-    cout << "Total Sales: " << total_sales << endl;
-    cout << "Total Profit: " << total_profit << endl;
+    cout << "Total Sales: " << total_sales_final << endl;
+    cout << "Total Cost: " << total_cost_final << endl;
     cout << "Financial Report Generated Successfully!" << endl;
     save_changes();
 }
@@ -574,7 +588,6 @@ void table_management()
     cout << " 3 -> Edit Table" << endl;
     cout << " 4 -> Delete Table" << endl;
     cout << " 5 -> Update Table" << endl;
-    
 
     cout << " 0 -> Exit" << endl;
 
@@ -597,9 +610,9 @@ void table_management()
     case 4:
         delete_table();
         break;
-     case 5 :
+    case 5:
         update_table();
-        break;    
+        break;
     case 0:
         return;
     default:
@@ -609,16 +622,16 @@ void table_management()
     save_changes();
 }
 
-void update_table(){
+void update_table()
+{
 
     int a;
     cout << "current table in system : ";
     cout << tables->capacity << endl;
     cout << "Amount of Table to be Added : ";
     cin >> a;
-    tables->capacity=tables->capacity+a;
-    cout << "Now total table Available : "<< tables->capacity<< endl;
-
+    tables->capacity = tables->capacity + a;
+    cout << "Now total table Available : " << tables->capacity << endl;
 }
 
 void view_tables()
@@ -630,7 +643,7 @@ void view_tables()
         {
             continue;
         }
-        cout << "Table No: " << i << endl;
+        cout << "Table No: " << tables[i].id << endl;
         cout << "Table Capacity: " << tables[i].capacity << endl;
         cout << "Table Status: " << tables[i].status << endl;
         cout << endl;
@@ -659,6 +672,7 @@ add_table:
     cout << "Enter Table Capacity: ";
     int capacity;
     cin >> capacity;
+    tables[index].id = index;
     tables[index].capacity = capacity;
     tables[index].status = "Available";
 
@@ -680,6 +694,7 @@ void edit_table()
     }
 
     cout << "Table Details:" << endl;
+    cout << "Table No: " << tables[id].id << endl;
     cout << "Table Capacity: " << tables[id].capacity << endl;
     cout << "Table Status: " << tables[id].status << endl;
 
@@ -710,9 +725,19 @@ void delete_table()
         cout << "Table not found. Please try again." << endl;
         return;
     }
-
-    tables[id].capacity = 0;
-    tables[id].status = "Unknown";
+    int t = -1;
+    bool found = false;
+    for (int i = 0; i < 100; i++)
+    {
+        if (tables[i].id == id)
+        {
+            t = i;
+            found = true;
+            break;
+        }
+    }
+    tables[t].capacity = 0;
+    tables[t].status = "Unknown";
 
     cout << "Table Deleted Successfully!" << endl;
     save_changes();
@@ -1252,15 +1277,9 @@ void changes_view()
 void save_changes()
 {
     ofstream fout;
-    fout.open("database.txt");
-    // fout << item_id;
+    fout.open("database/database.txt");
+    // fout << password;
     // fout << endl;
-    fout << total_sales;
-    fout << endl;
-    fout << total_profit;
-    fout << endl;
-    fout << password;
-    fout << endl;
 
     for (int i = 0; i < 100; i++)
     {
@@ -1283,20 +1302,20 @@ void save_changes()
         fout << endl;
     }
 
+    // saving password
+    ofstream fpass;
+    fpass.open("database/password.txt");
+    fpass << password;
+
+    // closing files
     fout.close();
+    fpass.close();
 }
 
 void load_changes()
 {
     ifstream fin;
-    fin.open("database.txt");
-    // fin >> item_id;
-    fin >> total_sales;
-    fin >> total_profit;
-    // fin >> table_id;
-    // fin >> user_id;
-    // fin >> discount_id;
-    fin >> password;
+    fin.open("database/database.txt");
 
     for (int i = 0; i < 100; i++)
     {
@@ -1324,5 +1343,13 @@ void load_changes()
         stringstream ss(line);
         ss >> items[i].quantity;
     }
+
+    // saving password
+    ifstream fpass;
+    fpass.open("database/password.txt");
+    fpass >> password;
+
+    // closing files
     fin.close();
+    fpass.close();
 }
