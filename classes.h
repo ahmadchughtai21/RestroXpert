@@ -33,18 +33,19 @@ public:
     double total_sale_price;
     double total_cost_price;
     string items[100];
-    string customer_name;
+    string customer_username;
     string customer_address;
     string customer_phone;
-    string order_date;
+    string customer_email;
     string order_status;
     string order_type;
+    string order_date;
 
     Order()
     {
         total_sale_price = 0.0;
         total_cost_price = 0.0;
-        customer_name = "Guest";
+        customer_username = "Guest";
         order_status = "Nill";
         order_type = "Unknown";
     }
@@ -115,10 +116,11 @@ public:
     Table()
     {
         capacity = 0;
-        status =  "unknown";
+        status = "unknown";
         reserved_by = "Unknown";
     }
-}; int Table::capacity = 0;
+};
+int Table::capacity = 0;
 
 class Address
 {

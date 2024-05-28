@@ -2,10 +2,15 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <windows.h>
+
+SYSTEMTIME o;
 
 using namespace std;
 
 int total = 0;
+int total_cost;
+int proceed = 0;
 
 int main();
 void delivery();
@@ -193,6 +198,18 @@ void sign_in()
         if (customers[index].password == password)
         {
             cout << "Sign In Successful!" << endl;
+
+            customers[index].order_count++;
+            customers[index].username = orders[index].customer_username;
+            customers[index].address = orders[index].customer_address;
+            customers[index].phone = orders[index].customer_phone;
+            customers[index].email = orders[index].customer_email;
+            orders[index].order_status = "Pending";
+            orders[index].order_type = "Home Delivery";
+            GetLocalTime(&o);
+            orders[index].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
+            index = proceed;
+
             display_menu();
         }
         else
@@ -212,7 +229,7 @@ void dining()
 
 void display_menu()
 {
-    cout << "-----Menu-----" << endl;
+    cout << " --------------------------- MENU ---------------------------- " << endl;
 
     for (int i = 0; i < 10; i++)
     {
@@ -248,6 +265,9 @@ void display_menu()
     {
         total = total + items[list[j] - 1].price;
     }
+
+    orders[proceed].total_sale_price = total;
+    orders[proceed].total_cost_price = total;
 
     print_bill();
 }

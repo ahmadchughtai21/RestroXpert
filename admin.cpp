@@ -408,7 +408,7 @@ void view_orders()
             continue;
         }
         cout << "Order ID: " << i << endl;
-        cout << "Customer Name: " << orders[i].customer_name << endl;
+        cout << "Customer Name: " << orders[i].customer_username << endl;
         cout << "Total Sale Price: " << orders[i].total_sale_price << endl;
         cout << "Total Cost Price: " << orders[i].total_cost_price << endl;
         cout << "Total Profit: " << orders[i].total_sale_price - orders[i].total_cost_price << endl;
@@ -433,7 +433,7 @@ void edit_order_status()
     }
 
     cout << "Order Details:" << endl;
-    cout << "Customer Name: " << orders[id].customer_name << endl;
+    cout << "Customer Name: " << orders[id].customer_username << endl;
     cout << "Total Sale Price: " << orders[id].total_sale_price << endl;
     cout << "Total Cost Price: " << orders[id].total_cost_price << endl;
     cout << "Total Profit: " << orders[id].total_sale_price - orders[id].total_cost_price << endl;
@@ -477,7 +477,7 @@ void view_cancelled_orders()
             continue;
         }
         cout << "Order ID: " << i << endl;
-        cout << "Customer Name: " << orders[i].customer_name << endl;
+        cout << "Customer Name: " << orders[i].customer_username << endl;
         cout << "Total Sale Price: " << orders[i].total_sale_price << endl;
         cout << "Total Cost Price: " << orders[i].total_cost_price << endl;
         cout << "Total Profit: " << orders[i].total_sale_price - orders[i].total_cost_price << endl;
@@ -1253,8 +1253,6 @@ void save_changes()
 {
     ofstream fout;
     fout.open("database.txt");
-    // fout << item_id;
-    // fout << endl;
     fout << total_sales;
     fout << endl;
     fout << total_profit;
@@ -1290,12 +1288,9 @@ void load_changes()
 {
     ifstream fin;
     fin.open("database.txt");
-    // fin >> item_id;
     fin >> total_sales;
     fin >> total_profit;
-    // fin >> table_id;
-    // fin >> user_id;
-    // fin >> discount_id;
+
     fin >> password;
 
     for (int i = 0; i < 100; i++)
