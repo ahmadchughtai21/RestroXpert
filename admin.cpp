@@ -420,12 +420,12 @@ void view_orders()
             if (orders[i].list[0] == 0)
             {
                 cout << j + 1 << "  " << items[orders[i].list[0]].name << endl;
+                if (orders[i].list[j + 1] == 0)
+                {
+                    break;
+                }
+                cout << j + 1 << "  " << items[orders[i].list[j]].name << endl;
             }
-            if (orders[i].list[j + 1] == 0)
-            {
-                break;
-            }
-            cout << j + 1 << "  " << items[orders[i].list[j]].name << endl;
         }
         cout << endl;
         cout << "Address : " << orders[i].customer_address << endl;
