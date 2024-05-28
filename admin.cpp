@@ -1229,12 +1229,6 @@ void save_changes()
     fout << endl;
     fout << total_profit;
     fout << endl;
-    // fout << table_id;
-    // fout << endl;
-    // fout << user_id;
-    // fout << endl;
-    // fout << discount_id;
-    // fout << endl;
     fout << password;
     fout << endl;
 

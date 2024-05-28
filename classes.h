@@ -32,6 +32,9 @@ public:
     double total_cost_price;
     string items[100];
     string customer_name;
+    string customer_address;
+    string customer_phone;
+    string order_date;
     string order_status;
     string order_type;
 

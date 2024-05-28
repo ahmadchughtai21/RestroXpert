@@ -47,7 +47,6 @@ int main()
             admin();
             break;
         case 2:
-            // Order Food code here
             order();
             break;
         case 3:
