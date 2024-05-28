@@ -19,7 +19,7 @@ void sign_in();
 void dine_in();
 void display_menu();
 void set_table();
-
+void take_away();
 void order()
 {
 order:
@@ -326,4 +326,7 @@ void set_table()
         cout << "Please try again later." << endl;
         main();
     }
+}
+void take_away(){
+    
 }
