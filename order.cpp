@@ -7,10 +7,10 @@
 SYSTEMTIME o;
 
 using namespace std;
-
+int myindex = 0;
 int total = 0;
 int total_cost;
-int proceed = 0;
+// int proceed = 0;
 
 int main();
 void delivery();
@@ -170,13 +170,13 @@ void sign_in()
     string username;
     cin >> username;
 
-    int index = -1;
+    // int index = -1;
     bool found = false;
     for (int i = 0; i < 100; i++)
     {
         if (customers[i].username == username)
         {
-            index = i;
+            myindex = i;
             found = true;
             break;
         }
@@ -194,20 +194,19 @@ void sign_in()
         cin.ignore();
         getline(cin, password);
 
-        if (customers[index].password == password)
+        if (customers[myindex].password == password)
         {
             cout << "Sign In Successful!" << endl;
 
-            customers[index].order_count++;
-            orders[index].customer_username = customers[index].username;
-            orders[index].customer_address = customers[index].address;
-            orders[index].customer_phone = customers[index].phone;
-            orders[index].customer_email = customers[index].email;
-            orders[index].order_status = "Pending";
-            orders[index].order_type = "Home Delivery";
+            customers[myindex].order_count++;
+            orders[myindex].customer_username = customers[myindex].username;
+            orders[myindex].customer_address = customers[myindex].address;
+            orders[myindex].customer_phone = customers[myindex].phone;
+            orders[myindex].customer_email = customers[myindex].email;
+            orders[myindex].order_status = "Pending";
+            orders[myindex].order_type = "Home Delivery";
             GetLocalTime(&o);
-            orders[index].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
-            index = proceed;
+            orders[myindex].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
 
             display_menu();
         }
@@ -221,22 +220,23 @@ void sign_in()
 void dine_in()
 {
     cout << "Welcome to the Dine In Panel" << endl;
-    int index = -1;
+    // int index = -1;
     bool found = false;
     for (int i = 0; i < 100; i++)
     {
-        if (customers[i].name == "Unknown")
+        if (orders[i].customer_username == "Guest")
         {
-            index = i;
+            myindex = i;
             found = true;
             break;
         }
     }
-    proceed = index;
-    orders[index].order_type = "Dine In";
-    orders[index].order_status = "Pending";
+
+    orders[myindex].customer_username = "Walk In Customer";
+    orders[myindex].order_type = "Dine In";
+    orders[myindex].order_status = "Pending";
     GetLocalTime(&o);
-    orders[index].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
+    orders[myindex].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
     set_table();
 }
 
@@ -264,33 +264,33 @@ void display_menu()
     for (int i = 0; i < items_count; i++)
     {
         cout << "Enter the item number: ";
-        cin >> orders[proceed].list[i];
+        cin >> orders[myindex].list[i];
     }
     for (int i = 0; i < items_count; i++)
     {
 
-        items[orders[proceed].list[i]].quantity--;
+        items[orders[myindex].list[i]].quantity--;
     }
 
     for (int i = 0; i < items_count; i++)
     {
-        total = total + items[orders[proceed].list[i]].price;
-        total_cost = total_cost + items[orders[proceed].list[i]].o_price;
+        total = total + items[orders[myindex].list[i]].price;
+        total_cost = total_cost + items[orders[myindex].list[i]].o_price;
     }
 
     cout << "------------------ Bill -----------------" << endl;
     cout << "Your Ordered Items" << endl;
     for (int i = 0; i < items_count; i++)
     {
-        cout << items[orders[proceed].list[i]].name << " - " << items[orders[proceed].list[i]].price << endl;
+        cout << items[orders[myindex].list[i]].name << " - " << items[orders[myindex].list[i]].price << endl;
     }
 
     cout << "-----------------------------------------" << endl;
 
     cout << "Total Price: " << total << endl;
 
-    orders[proceed].total_sale_price = total;
-    orders[proceed].total_cost_price = total_cost;
+    orders[myindex].total_sale_price = total;
+    orders[myindex].total_cost_price = total_cost;
 
     cout << "-----------------------------------------" << endl;
 }
