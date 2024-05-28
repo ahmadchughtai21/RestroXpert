@@ -20,6 +20,7 @@ void dine_in();
 void display_menu();
 void set_table();
 
+
 void order()
 {
 order:
@@ -40,9 +41,7 @@ order:
         break;
     case 2:
         dine_in();
-        break;
-    case 3:
-        take_away();    
+        break;    
     case 0:
         cout << "Exiting Order Panel..." << endl;
         main();
@@ -244,62 +243,14 @@ void dine_in()
 
 void display_menu()
 {
-    cout << " --------------------------- MENU ---------------------------- " << endl;
+    cout << "Welcome to the Menu Panel" << endl;
 
-    for (int i = 0; i < 10; i++)
-    {
-        if (
-            items[i].name == "Unknown" || items[i].name == "")
-        {
-            continue;
-        }
-        cout << " " << i << " -> " << items[i].name << " ----------------------------- "
-             << "Price = " << items[i].price << " Rs" << endl;
-    }
+    cout << "-------------------Menu-------------------" << endl;
 
-    cout << "How many items do you want to order? ";
-    int numItems;
-    cin >> numItems;
+    
 
-    cout << "Enter the item numbers you want to order: ";
 
-    for (int i = 0; i < numItems; i++)
-    {
-        cin >> orders[proceed].list[i];
-    }
 
-    for (int j = 0; j < numItems; j++) // decrease quantity of ordered items by 1
-    {
-        items[orders[proceed].list[j]].quantity--;
-    }
-
-    cout << "You have selected the following items: " << endl;
-    for (int j = 0; j < numItems; j++) // shows the all seletected items
-    {
-        cout << items[orders[proceed].list[j]].name << " ---------------------------- " << items[orders[proceed].list[j]].price << " Rs" << endl;
-    }
-
-    for (int j = 0; j < numItems; j++) // calculate the total bill
-    {
-        total = total + items[orders[proceed].list[j]].price;
-        total_cost = total_cost + items[orders[proceed].list[j]].o_price;
-    }
-
-    orders[proceed].total_sale_price = total;
-    orders[proceed].total_cost_price = total_cost;
-
-    cout << "Order Placed Successfully!" << endl;
-
-    cout << " --------------------------- BILL ---------------------------- " << endl;
-    cout << "Items: " << endl;
-
-    for (int j = 0; j < numItems; j++)
-    {
-        cout << items[orders[proceed].list[j]].name << " - " << items[orders[proceed].list[j]].price << " Rs" << endl;
-    }
-
-    cout << " ---------------------------------------------Total: " << fixed << setprecision(2) << total << " Rs " << endl;
-    cout << "-------------------------------------------------------------- " << endl;
 }
 
 void set_table()
