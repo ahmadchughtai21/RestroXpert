@@ -21,9 +21,9 @@ void order()
 order:
     int choice;
     cout << "Welcome To the Order Panel" << endl;
-    cout << "1 -> Home Delivery" << endl;
-    cout << "2 -> Dine In" << endl;
-    cout << "0 -> Exit" << endl;
+    cout << " 1 -> Home Delivery" << endl;
+    cout << " 2 -> Dine In" << endl;
+    cout << " 0 -> Exit" << endl;
 
     cout << "Enter Your Choice : ";
     cin >> choice;
@@ -51,8 +51,8 @@ void delivery()
 {
     cout << "Welcome to the Delivery Panel" << endl;
     cout << "Sign Up or Sign In" << endl;
-    cout << "1 -> Sign Up" << endl;
-    cout << "2 -> Sign In" << endl;
+    cout << " 1 -> Sign Up" << endl;
+    cout << " 2 -> Sign In" << endl;
 
     int choice;
     cout << "Enter Your Choice : ";
@@ -90,8 +90,8 @@ void sign_up()
         {
             cout << "User Already Exists, Please Sign in or try a new Username" << endl;
 
-            cout << "1 -> Sign In" << endl;
-            cout << "2 -> Try a new Username" << endl;
+            cout << " 1 -> Sign In" << endl;
+            cout << " 2 -> Try a new Username" << endl;
 
             int choice;
             cout << "Enter Your Choice : ";
