@@ -1274,7 +1274,7 @@ void changes_view()
 void save_changes()
 {
     ofstream fout;
-    fout.open("database/database.txt");
+    fout.open("database/items.txt");
     // fout << password;
     // fout << endl;
 
@@ -1299,6 +1299,19 @@ void save_changes()
         fout << endl;
     }
 
+    // reading order items
+    ofstream forder;
+    forder.open("database/orders.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        for (int j = 0; j < 100; j++)
+        {
+            forder << orders[i].list[j];
+            forder << endl;
+        }
+        forder << endl;
+    }
+
     // saving password
     ofstream fpass;
     fpass.open("database/password.txt");
@@ -1307,12 +1320,13 @@ void save_changes()
     // closing files
     fout.close();
     fpass.close();
+    forder.close();
 }
 
 void load_changes()
 {
     ifstream fin;
-    fin.open("database/database.txt");
+    fin.open("database/items.txt");
 
     for (int i = 0; i < 100; i++)
     {
@@ -1346,7 +1360,22 @@ void load_changes()
     fpass.open("database/password.txt");
     fpass >> password;
 
+    // saving order items
+    ifstream forder;
+    forder.open("database/orders.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        for (int j = 0; j < 100; j++)
+        {
+            string line;
+            getline(forder, line);
+            stringstream ss(line);
+            ss >> orders[i].list[j];
+        }
+    }
+
     // closing files
     fin.close();
     fpass.close();
+    forder.close();
 }
