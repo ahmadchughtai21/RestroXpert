@@ -257,7 +257,7 @@ void display_menu()
 
     cout << "-----------------------------------------" << endl;
 
-    cout << "Enter how many unique items you want to order: ";
+    cout << "Enter how many items you want to order: ";
     int items_count;
     cin >> items_count;
 
@@ -265,23 +265,24 @@ void display_menu()
     {
         cout << "Enter the item number: ";
         cin >> orders[myindex].list[i];
-        cout << "Enter the quantity: ";
-        cin >> orders[myindex].quantity[i];
+    }
+    for (int i = 0; i < items_count; i++)
+    {
+
+        items[orders[myindex].list[i]].quantity--;
     }
 
     for (int i = 0; i < items_count; i++)
     {
-        total = total + items[orders[myindex].list[i]].price * orders[myindex].quantity[i];
-        total_cost = total_cost + items[orders[myindex].list[i]].o_price * orders[myindex].quantity[i];
+        total = total + items[orders[myindex].list[i]].price;
+        total_cost = total_cost + items[orders[myindex].list[i]].o_price;
     }
 
     cout << "------------------ Bill -----------------" << endl;
     cout << "Your Ordered Items" << endl;
     for (int i = 0; i < items_count; i++)
     {
-        cout << items[orders[myindex].list[i]].name << " - "
-             << items[orders[myindex].list[i]].price << " - Quantity: "
-             << orders[myindex].quantity[i] << endl;
+        cout << items[orders[myindex].list[i]].name << " - " << items[orders[myindex].list[i]].price << endl;
     }
 
     cout << "-----------------------------------------" << endl;

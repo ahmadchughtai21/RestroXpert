@@ -31,7 +31,6 @@ public:
     double total_sale_price;
     double total_cost_price;
     int list[100];
-    int quantity[100];
     string customer_username;
     string customer_address;
     string customer_phone;
@@ -45,10 +44,6 @@ public:
         for (int i = 0; i < 100; i++)
         {
             list[i] = -1;
-        }
-        for (int i = 0; i < 100; i++)
-        {
-            quantity[i] = -1;
         }
         total_sale_price = 0.0;
         total_cost_price = 0.0;
