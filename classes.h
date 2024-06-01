@@ -93,15 +93,18 @@ public:
 class Staff : public User
 {
 public:
+    int id;
     string cnic;
     string phone;
     string email;
     string address;
     string role;
     string status;
+    bool attendance;
 
     Staff()
     {
+        id = 0;
         name = "Unknown";
         cnic = "Unknown";
         phone = "Unknown";
@@ -109,6 +112,7 @@ public:
         address = "Unknown";
         role = "Unknown";
         status = "Unknown";
+        attendance = false;
     }
 };
 

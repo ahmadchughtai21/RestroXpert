@@ -102,7 +102,7 @@ void admin_menu2()
         cout << " 2 -> Order Management" << endl;          // completed
         cout << " 3 -> Get Reports" << endl;               // completed
         cout << " 4 -> Table Management" << endl;          // completed
-        cout << " 5 -> User Management" << endl;           // completed
+        cout << " 5 -> Staff Management" << endl;          // completed
         cout << " 6 -> Discount Management" << endl;       // completed
         cout << " 7 -> View Feedbacks" << endl;            // completed
         cout << " 8 -> Change Admin Password" << endl;     // completed
@@ -804,6 +804,7 @@ void get_staff_details()
     }
 
     cout << "Staff Details:" << endl;
+    cout << "Staff ID: " << id << endl;
     cout << "Name: " << staffs[id].name << endl;
     cout << "CNIC: " << staffs[id].cnic << endl;
     cout << "Phone: " << staffs[id].phone << endl;
@@ -818,7 +819,6 @@ void get_staff_details()
 void add_staff()
 {
     cout << "You are adding a Staff Member" << endl;
-    // user_id++;
     int index = -1;
     bool found = false;
     for (int i = 0; i < 100; i++)
@@ -865,6 +865,7 @@ add_staff:
 
     cout << "Staff Member Added Successfully!" << endl;
     cout << "New Details:" << endl;
+    cout << "Staff ID: " << index << endl;
     cout << "Name: " << staffs[index].name << endl;
     cout << "CNIC: " << staffs[index].cnic << endl;
     cout << "Phone: " << staffs[index].phone << endl;
