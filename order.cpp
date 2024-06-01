@@ -284,15 +284,46 @@ void display_menu()
     {
         cout << items[orders[myindex].list[i]].name << " - " << items[orders[myindex].list[i]].price << endl;
     }
+    orders[myindex].total_sale_price = total;
+    orders[myindex].total_cost_price = total_cost;
+    total_sales_final = total_sales_final + orders[myindex].total_sale_price;
+    total_cost_final = total_cost_final + orders[myindex].total_cost_price;
+    
 
     cout << "-----------------------------------------" << endl;
 
     cout << "Total Price: " << total << endl;
 
-    orders[myindex].total_sale_price = total;
-    orders[myindex].total_cost_price = total_cost;
+    total = 0;
+    total_cost = 0;
 
     cout << "-----------------------------------------" << endl;
+
+    cout << "Order Placed Successfully!" << endl;
+    cout << "Your Order ID is: " << myindex << endl;
+    cout << "Your Order Status is: " << orders[myindex].order_status << endl;
+    cout << "Your Order Type is: " << orders[myindex].order_type << endl;
+    cout << "Your Order Date is: " << orders[myindex].order_date << endl;
+
+    cout << "An email has been sent to you with the details of your order." << endl;
+
+    cout << "Would you like to place another order?" << endl;
+    cout << " 1 -> Yes" << endl;
+    cout << " 0 -> No" << endl;
+
+    int choice;
+    cout << "Enter Your Choice : ";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        main();
+    }
+    else
+    {
+        cout << "Thank you for ordering with us!" << endl;
+        exit(0);
+    }
 }
 
 void set_table()

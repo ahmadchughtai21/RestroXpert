@@ -529,22 +529,22 @@ void reports()
 void generate_financial_report()
 {
 
-    for (int i = 0; i < 100; i++)
-    {
-        if (orders[i].order_status != "Completed")
-        {
-            continue;
-        }
-        total_sales_final = total_sales_final + orders[i].total_sale_price;
-    }
-    for (int i = 0; i < 100; i++)
-    {
-        if (orders[i].order_status != "Completed")
-        {
-            continue;
-        }
-        total_cost_final = total_cost_final + orders[i].total_cost_price;
-    }
+    // for (int i = 0; i < 100; i++)
+    // {
+    //     if (orders[i].order_status != "Completed")
+    //     {
+    //         continue;
+    //     }
+    //     total_sales_final = total_sales_final + orders[i].total_sale_price;
+    // }
+    // for (int i = 0; i < 100; i++)
+    // {
+    //     if (orders[i].order_status != "Completed")
+    //     {
+    //         continue;
+    //     }
+    //     total_cost_final = total_cost_final + orders[i].total_cost_price;
+    // }
 
     SYSTEMTIME t;
     GetLocalTime(&t);
