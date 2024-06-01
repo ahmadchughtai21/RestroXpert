@@ -8,13 +8,10 @@
 #include <sstream>
 #include "classes.h"
 
-// Global Variables for Counter
-// int item_id;
+// Global Variables
+
 double total_sales_final;
 double total_cost_final;
-// int table_id;
-// int user_id;
-// int discount_id;
 string password = "";
 
 // Prototypes of used functions
