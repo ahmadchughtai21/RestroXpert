@@ -18,6 +18,7 @@ double total_cost_final;
 string password = "";
 
 // Prototypes of used functions
+void main_menu();
 void enter_password();
 void set_password();
 void admin_menu2();
@@ -147,7 +148,7 @@ void admin_menu2()
             reset_to_default();
             break;
         case 0:
-            return;
+            main_menu();
         default:
             cout << "Invalid choice! Please try again." << endl;
             goto admin_menu2;
@@ -237,7 +238,7 @@ void add_item()
     bool found = false;
     for (int i = 0; i < 100; i++)
     {
-        if (items[i].name == "Unknown")
+        if (items[i].name == "Unknown" || items[i].name == "")
         {
             index = i;
             found = true;
@@ -282,7 +283,7 @@ void edit_item()
     int id;
     cin >> id;
 
-    if (items[id].name == "Unknown")
+    if (items[id].name == "Unknown" || items[id].name == "")
     {
         cout << "Item not found. Please try again." << endl;
         return;
@@ -329,7 +330,7 @@ void delete_item()
     int id;
     cin >> id;
 
-    if (items[id].name == "Unknown")
+    if (items[id].name == "Unknown" || items[id].name == "")
     {
         cout << "Item not found. Please try again." << endl;
         return;
@@ -351,7 +352,7 @@ void update_quantity()
     int id;
     cin >> id;
 
-    if (items[id].name == "Unknown")
+    if (items[id].name == "Unknown" || items[id].name == "")
     {
         cout << "Item not found. Please try again." << endl;
         return;
@@ -564,7 +565,7 @@ void stock_report()
     cout << "Stock Report:" << endl;
     for (int i = 0; i < 100; i++)
     {
-        if (items[i].name == "Unknown")
+        if (items[i].name == "Unknown" || items[i].name == "")
         {
             continue;
         }
@@ -645,7 +646,7 @@ void view_tables()
     cout << "Tables List:" << endl;
     for (int i = 0; i < 100; i++)
     {
-        if (tables[i].status == "Unknown")
+        if (tables[i].status == "Unknown" || tables[i].status == "")
         {
             continue;
         }
@@ -665,7 +666,7 @@ void add_table()
     bool found = false;
     for (int i = 0; i < 100; i++)
     {
-        if (tables[i].status == "Unknown")
+        if (tables[i].status == "Unknown" || tables[i].status == "")
         {
             index = i;
             found = true;
@@ -692,7 +693,7 @@ void edit_table()
     int id;
     cin >> id;
 
-    if (tables[id].status == "Unknown")
+    if (tables[id].status == "Unknown" || tables[id].status == "")
     {
         cout << "Table not found. Please try again." << endl;
         return;
@@ -725,7 +726,7 @@ void delete_table()
     int id;
     cin >> id;
 
-    if (tables[id].status == "Unknown")
+    if (tables[id].status == "Unknown" || tables[id].status == "")
     {
         cout << "Table not found. Please try again." << endl;
         return;
@@ -793,7 +794,7 @@ void view_all_staff()
     cout << "Staff List:" << endl;
     for (int i = 0; i < 100; i++)
     {
-        if (staffs[i].name == "Unknown")
+        if (staffs[i].name == "Unknown" || staffs[i].name == "")
         {
             continue;
         }
@@ -834,7 +835,7 @@ void get_staff_details()
     int id;
     cin >> id;
 
-    if (staffs[id].name == "Unknown")
+    if (staffs[id].name == "Unknown" || staffs[id].name == "")
     {
         cout << "Staff not found. Please try again." << endl;
         return;
@@ -860,7 +861,7 @@ void add_staff()
     bool found = false;
     for (int i = 0; i < 100; i++)
     {
-        if (staffs[i].name == "Unknown")
+        if (staffs[i].name == "Unknown" || staffs[i].name == "")
         {
             index = i;
             found = true;
@@ -921,7 +922,7 @@ void edit_staff()
     int id;
     cin >> id;
 
-    if (staffs[id].name == "Unknown")
+    if (staffs[id].name == "Unknown" || staffs[id].name == "")
     {
         cout << "Staff not found. Please try again." << endl;
         return;
@@ -989,7 +990,7 @@ void delete_staff()
     int id;
     cin >> id;
 
-    if (staffs[id].name == "Unknown")
+    if (staffs[id].name == "Unknown" || staffs[id].name == "")
     {
         cout << "Staff not found. Please try again." << endl;
         return;
@@ -1070,7 +1071,7 @@ void discount_list()
     cout << "Discount List:" << endl;
     for (int i = 0; i < 100; i++)
     {
-        if (discounts[i].name == "Unknown")
+        if (discounts[i].name == "Unknown" || discounts[i].name == "")
         {
             continue;
         }
@@ -1091,7 +1092,7 @@ void add_discount()
     bool found = false;
     for (int i = 0; i < 100; i++)
     {
-        if (discounts[i].name == "Unknown")
+        if (discounts[i].name == "Unknown" || discounts[i].name == "")
         {
             index = i;
             found = true;
@@ -1121,7 +1122,7 @@ void edit_discount()
     int id;
     cin >> id;
 
-    if (discounts[id].name == "Unknown")
+    if (discounts[id].name == "Unknown" || discounts[id].name == "")
     {
         cout << "Discount not found. Please try again." << endl;
         return;
@@ -1154,7 +1155,7 @@ void delete_discount()
     int id;
     cin >> id;
 
-    if (discounts[id].name == "Unknown")
+    if (discounts[id].name == "Unknown" || discounts[id].name == "")
     {
         cout << "Discount not found. Please try again." << endl;
         return;
@@ -1194,7 +1195,7 @@ void view_feedbacks()
     cout << "Enter your choice: ";
     cin >> choice;
 
-        while (choice < 0 || choice > 2)
+    while (choice < 0 || choice > 2)
     {
         cout << "Invalid choice. Please try again: ";
         cin >> choice;
@@ -1206,7 +1207,7 @@ void view_feedbacks()
         cout << "Unread Feedbacks:" << endl;
         for (int i = 0; i < 100; i++)
         {
-            if (feedbacks[i].status == "Read" || feedbacks[i].status == "Unknown")
+            if (feedbacks[i].status == "Read" || feedbacks[i].status == "Unknown" || feedbacks[i].status == "")
             {
                 continue;
             }
@@ -1247,7 +1248,10 @@ void view_feedbacks()
         cout << "Read Feedbacks:" << endl;
         for (int i = 0; i < 100; i++)
         {
-            if (feedbacks[i].status == "Unread" || feedbacks[i].status == "Unknown")
+            if (feedbacks[i].status == "Unread" || feedbacks[i].status == "Unknown" || feedbacks[i].status == "")
+            {
+                continue;
+            }
             {
                 continue;
             }
@@ -1278,13 +1282,6 @@ void reset_to_default()
 
     password = "";
 
-    for (int i = 0; i < 100; i++)
-    {
-        items[i].name = "Unknown";
-        items[i].o_price = 0.0;
-        items[i].price = 0.0;
-        items[i].quantity = 0;
-    }
     save_changes();
 }
 void changes_view()
@@ -1300,8 +1297,6 @@ void save_changes()
 {
     ofstream fout;
     fout.open("database/items.txt");
-    // fout << password;
-    // fout << endl;
 
     for (int i = 0; i < 100; i++)
     {
@@ -1335,6 +1330,229 @@ void save_changes()
             forder << endl;
         }
         forder << endl;
+    }
+
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].id;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].total_sale_price;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].total_cost_price;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].customer_username;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].customer_address;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].customer_phone;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].customer_email;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].order_status;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].order_type;
+        forder << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        forder << orders[i].order_date;
+        forder << endl;
+    }
+
+    // saving users
+    ofstream fuser;
+    fuser.open("database/users.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        fuser << staffs[i].name;
+        fuser << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fuser << staffs[i].role;
+        fuser << endl;
+    }
+
+    // saving customer
+    ofstream fcustomer;
+    fcustomer.open("database/customers.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].username;
+        fcustomer << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].password;
+        fcustomer << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].phone;
+        fcustomer << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].email;
+        fcustomer << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].address;
+        fcustomer << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].order_count;
+        fcustomer << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].name;
+        fcustomer << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fcustomer << customers[i].role;
+        fcustomer << endl;
+    }
+
+    // saving staff
+
+    ofstream fstaff;
+    fstaff.open("database/staff.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].cnic;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].phone;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].email;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].address;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].role;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].status;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].attendance;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].name;
+        fstaff << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fstaff << staffs[i].role;
+        fstaff << endl;
+    }
+
+    // saving tables
+
+    ofstream ftable;
+    ftable.open("database/tables.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        ftable << tables[i].id;
+        ftable << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        ftable << tables[i].capacity;
+        ftable << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        ftable << tables[i].status;
+        ftable << endl;
+    }
+
+    // saving discounts
+
+    ofstream fdiscount;
+    fdiscount.open("database/discounts.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        fdiscount << discounts[i].name;
+        fdiscount << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        fdiscount << discounts[i].discount;
+        fdiscount << endl;
+    }
+
+    // saving feedbacks
+    ofstream ffeedback;
+    ffeedback.open("database/feedbacks.txt");
+    for (int i = 0; i < 100; i++)
+    {
+        ffeedback << feedbacks[i].stars;
+        ffeedback << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        ffeedback << feedbacks[i].comments;
+        ffeedback << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        ffeedback << feedbacks[i].customer_name;
+        ffeedback << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        ffeedback << feedbacks[i].date;
+        ffeedback << endl;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        ffeedback << feedbacks[i].status;
+        ffeedback << endl;
     }
 
     // saving password
@@ -1380,12 +1598,12 @@ void load_changes()
         ss >> items[i].quantity;
     }
 
-    // saving password
+    // loading password
     ifstream fpass;
     fpass.open("database/password.txt");
     fpass >> password;
 
-    // saving order items
+    // loading order items
     ifstream forder;
     forder.open("database/orders.txt");
     for (int i = 0; i < 100; i++)
@@ -1399,8 +1617,219 @@ void load_changes()
         }
     }
 
-    // closing files
+    for (int i = 0; i < 100; i++)
+    {
+        string line;
+        getline(forder, line);
+        stringstream ss(line);
+        ss >> orders[i].id;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        string line;
+        getline(forder, line);
+        stringstream ss(line);
+        ss >> orders[i].total_sale_price;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        string line;
+        getline(forder, line);
+        stringstream ss(line);
+        ss >> orders[i].total_cost_price;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        getline(forder, orders[i].customer_username);
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        getline(forder, orders[i].customer_address);
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        getline(forder, orders[i].customer_phone);
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        getline(forder, orders[i].customer_email);
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        getline(forder, orders[i].order_status);
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        getline(forder, orders[i].order_type);
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        getline(forder, orders[i].order_date);
+    }
+
+    // loading users
+    ifstream fuser;
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fuser, staffs[i].name);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fuser, staffs[i].role);
+    }
+
+    // loading customers
+    ifstream fcustomer;
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fcustomer, customers[i].username);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fcustomer, customers[i].password);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fcustomer, customers[i].phone);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fcustomer, customers[i].email);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fcustomer, customers[i].address);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        string line;
+        getline(fcustomer, line);
+        stringstream ss(line);
+        ss >> customers[i].order_count;
+    }
+
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fcustomer, customers[i].name);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fcustomer, customers[i].role);
+    }
+
+    // loading staff
+    ifstream fstaff;
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].cnic);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].phone);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].email);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].address);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].role);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].status);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        string line;
+        getline(fstaff, line);
+        stringstream ss(line);
+        ss >> staffs[i].attendance;
+    }
+
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].name);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fstaff, staffs[i].role);
+    }
+
+    // loading tables
+    ifstream ftable;
+    for (size_t i = 0; i < 100; i++)
+    {
+        string line;
+        getline(ftable, line);
+        stringstream ss(line);
+        ss >> tables[i].id;
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        string line;
+        getline(ftable, line);
+        stringstream ss(line);
+        ss >> tables[i].capacity;
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(ftable, tables[i].status);
+    }
+
+    // loading discounts
+    ifstream fdiscount;
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(fdiscount, discounts[i].name);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        string line;
+        getline(fdiscount, line);
+        stringstream ss(line);
+        ss >> discounts[i].discount;
+    }
+
+    // loading feedbacks
+
+    ifstream ffeedback;
+    for (size_t i = 0; i < 100; i++)
+    {
+        string line;
+        getline(ffeedback, line);
+        stringstream ss(line);
+        ss >> feedbacks[i].stars;
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(ffeedback, feedbacks[i].comments);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(ffeedback, feedbacks[i].customer_name);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(ffeedback, feedbacks[i].date);
+    }
+    for (size_t i = 0; i < 100; i++)
+    {
+        getline(ffeedback, feedbacks[i].status);
+    }
+
+    // loading files
     fin.close();
     fpass.close();
     forder.close();
+    fuser.close();
+    fcustomer.close();
+    fstaff.close();
+    ftable.close();
+    fdiscount.close();
+    ffeedback.close();
 }

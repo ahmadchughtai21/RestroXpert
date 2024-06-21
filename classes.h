@@ -147,7 +147,7 @@ public:
 class Feedback
 {
 public:
-    int stars;
+    float stars;
     string comments;
     string customer_name;
     string date;

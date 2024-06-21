@@ -77,7 +77,7 @@ main_menu:
         save_changes();
         cout << "Exiting RestroXpert. Goodbye!" << endl;
 
-        // changes_view(); // mantainance mode
+        // changes_view(); // maintanance mode
 
         exit(0);
     default:
