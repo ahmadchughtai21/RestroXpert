@@ -1,7 +1,7 @@
 #include "classes.h"
 #include <iostream>
 #include <string>
-#include <iomanip>
+// #include <iomanip>
 #include <windows.h>
 
 SYSTEMTIME o;
@@ -216,7 +216,7 @@ void sign_in()
             orders[myindex].order_status = "Pending";
             orders[myindex].order_type = "Home Delivery";
             GetLocalTime(&o);
-            orders[myindex].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear);
+            orders[myindex].order_date = to_string(o.wDay) + "/" + to_string(o.wMonth) + "/" + to_string(o.wYear); 
 
             display_menu();
         }
@@ -314,7 +314,6 @@ void display_menu()
     cout << "Your Order Type is: " << orders[myindex].order_type << endl;
     cout << "Your Order Date is: " << orders[myindex].order_date << endl;
 
-    cout << "An email has been sent to you with the details of your order." << endl;
 
     cout << "Would you like to place another order?" << endl;
     cout << " 1 -> Yes" << endl;
