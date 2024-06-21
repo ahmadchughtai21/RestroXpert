@@ -1224,12 +1224,9 @@ void view_feedbacks()
 
 void reset_to_default()
 {
-    // item_id = 0;
     double total_sales = 0.0;
     double total_profit = 0.0;
-    // table_id = 0;
-    // user_id = 0;
-    // discount_id = 0;
+
     password = "";
 
     for (int i = 0; i < 100; i++)
