@@ -46,6 +46,12 @@ main_menu:
     int choice;
     cin >> choice;
 
+    while (choice < 0 || choice > 5)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
+
     switch (choice)
     {
     case 1:

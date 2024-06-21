@@ -12,10 +12,16 @@ void attendance()
     cout << "-----------------" << endl;
     cout << "1. Mark Attendance" << endl;
     cout << "2. View Attendance" << endl;
-    cout << "3. Exit" << endl;
+    cout << "0. Exit" << endl;
     cout << "Enter your choice: ";
     int choice;
     cin >> choice;
+
+    while (choice < 0 || choice > 2)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
 
     switch (choice)
     {
@@ -25,7 +31,7 @@ void attendance()
     case 2:
         view_attendance();
         break;
-    case 3:
+    case 0:
         break;
     default:
         cout << "Invalid choice!" << endl;

@@ -61,6 +61,11 @@ void delivery()
     int choice;
     cout << "Enter Your Choice : ";
     cin >> choice;
+    while (choice < 1 || choice > 2)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
 
     switch (choice)
     {
@@ -101,6 +106,11 @@ void sign_up()
             cout << "Enter Your Choice : ";
             cin >> choice;
 
+    while (choice < 1 || choice > 2)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
             switch (choice)
             {
             case 1:
@@ -288,7 +298,6 @@ void display_menu()
     orders[myindex].total_cost_price = total_cost;
     total_sales_final = total_sales_final + orders[myindex].total_sale_price;
     total_cost_final = total_cost_final + orders[myindex].total_cost_price;
-    
 
     cout << "-----------------------------------------" << endl;
 

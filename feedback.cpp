@@ -6,12 +6,13 @@
 SYSTEMTIME f;
 
 void give_feedback();
+void main_menu();
 
 void feedback_panel()
 {
     cout << "Feedback Panel" << endl;
     cout << "1. Give Feedback" << endl;
-    cout << "2. Back" << endl;
+    cout << "0. Back" << endl;
     cout << "Enter your choice: ";
     int choice;
     cin >> choice;
@@ -20,8 +21,8 @@ void feedback_panel()
     case 1:
         give_feedback();
         break;
-    case 2:
-        break;
+    case 0:
+        main_menu();
     default:
         cout << "Invalid choice" << endl;
         break;
@@ -43,8 +44,16 @@ void give_feedback()
         cout << "Enter your name: ";
         cin.ignore();
         getline(cin, feedbacks[i].customer_name);
+    rating:
         cout << "Rate us (1-5): ";
-        cin >> feedbacks[i].stars;
+        int stars;
+        cin >> stars;
+
+        if (stars < 1 || stars > 5)
+        {
+            cout << "Invalid rating. Please rate us between 1 to 5." << endl;
+            goto rating;
+        }
         cout << "Enter your feedback: ";
         string comments;
         cin.ignore();

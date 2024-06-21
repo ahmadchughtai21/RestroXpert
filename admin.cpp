@@ -112,6 +112,11 @@ void admin_menu2()
         int choice;
         cout << "Enter your choice: ";
         cin >> choice;
+        while (choice < 0 || choice > 9)
+        {
+            cout << "Invalid choice. Please try again: ";
+            cin >> choice;
+        }
 
         switch (choice)
         {
@@ -166,6 +171,12 @@ void inventory_management()
         int choice;
         cout << "Enter your choice: ";
         cin >> choice;
+
+        while (choice < 0 || choice > 5)
+        {
+            cout << "Invalid choice. Please try again: ";
+            cin >> choice;
+        }
 
         switch (choice)
         {
@@ -372,6 +383,11 @@ void order_management()
     int choice;
     cout << "Enter your choice: ";
     cin >> choice;
+    while (choice < 0 || choice > 4)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
 
     switch (choice)
     {
@@ -510,6 +526,12 @@ void reports()
     cout << "Enter your choice: ";
     cin >> choice;
 
+    while (choice < 0 || choice > 2)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
+
     switch (choice)
     {
     case 1:
@@ -567,12 +589,17 @@ void table_management()
     cout << " 3 -> Edit Table" << endl;
     cout << " 4 -> Delete Table" << endl;
     cout << " 5 -> Update Table" << endl;
-
     cout << " 0 -> Exit" << endl;
 
     int choice;
     cout << "Enter your choice: ";
     cin >> choice;
+
+    while (choice < 0 || choice > 5)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
 
     switch (choice)
     {
@@ -634,7 +661,6 @@ void view_tables()
 void add_table()
 {
     cout << "You are adding a Table" << endl;
-    // table_id++;
     int index = -1;
     bool found = false;
     for (int i = 0; i < 100; i++)
@@ -734,6 +760,11 @@ void user_management()
     int choice;
     cout << "Enter your choice: ";
     cin >> choice;
+    while (choice < 0 || choice > 4)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
 
     switch (choice)
     {
@@ -777,6 +808,12 @@ void view_all_staff()
     int choice;
     cout << "Enter your choice: ";
     cin >> choice;
+
+    while (choice < 0 || choice > 1)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
     switch (choice)
     {
     case 1:
@@ -1001,6 +1038,12 @@ void discount_management()
     cout << "Enter your choice: ";
     cin >> choice;
 
+    while (choice < 0 || choice > 5)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
+
     switch (choice)
     {
     case 1:
@@ -1151,6 +1194,12 @@ void view_feedbacks()
     cout << "Enter your choice: ";
     cin >> choice;
 
+        while (choice < 0 || choice > 2)
+    {
+        cout << "Invalid choice. Please try again: ";
+        cin >> choice;
+    }
+
     switch (choice)
     {
     case 1:
@@ -1242,10 +1291,6 @@ void changes_view()
 {
 
     cout << "Showing Database Tables ( Maintainance Mode !!! )" << endl;
-    // cout << "Item ID: " << item_id << endl;
-    // cout << "Table ID: " << table_id << endl;
-    // cout << "User ID: " << user_id << endl;
-    // cout << "Discount ID: " << discount_id << endl;
     cout << "Password: " << password << endl;
 }
 
