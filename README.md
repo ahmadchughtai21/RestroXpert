@@ -38,4 +38,9 @@ To use RestroXpert, follow these steps:
 4. Save your progress using the "Save and Continue" option.
 5. When you are done, use the "Save and Exit" option to exit the program.
 
+## Screenshots
+![Screenshot 2024-07-09 180300](https://github.com/ahmadchughtai21/RestroXpert/assets/133879449/e9b0a841-c30e-4b37-aafe-af24fbef08fc)
+![Screenshot 2024-07-09 180706](https://github.com/ahmadchughtai21/RestroXpert/assets/133879449/aeaec4e5-246d-4878-a610-8df298caf3dc)
+
+
 Enjoy using RestroXpert for efficient restaurant management!
